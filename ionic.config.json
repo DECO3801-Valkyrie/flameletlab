@@ -1,0 +1,7 @@
+{
+  "name": "flameletlab",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
