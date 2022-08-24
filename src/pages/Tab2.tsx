@@ -17,6 +17,7 @@ import {
 export const Tab2: React.FC = () => {
 
     const [email, setEmail] = useState<string>();
+    const [FullName, setFullName] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [confirm, confirmPassword] = useState<string>();
 
@@ -30,7 +31,10 @@ export const Tab2: React.FC = () => {
             <IonContent>
                 <IonList>
                     <IonItem>
-                        <IonInput name="email" value={email} placeholder="Enter Email" onIonChange={e => setEmail(e.detail.value!)} clearInput></IonInput>
+                        <IonInput name="email" value={email} placeholder="Enter your Email" onIonChange={e => setEmail(e.detail.value!)} clearInput></IonInput>
+                    </IonItem>
+                    <IonItem>
+                        <IonInput name="FullName" value={FullName} placeholder="Enter your Full Name" onIonChange={e => setFullName(e.detail.value!)} clearInput></IonInput>
                     </IonItem>
                     <IonItem>
                         <IonInput name="password" type="password" value={password} placeholder="Enter Password" onIonChange={e1 => setPassword(e1.detail.value!)} clearInput></IonInput>
