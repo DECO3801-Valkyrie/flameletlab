@@ -46,7 +46,7 @@ Check out this list of components and UI docs for Ionic:
 Often times we will get stuck, but don't worry the internet is full of lots of helpful articles.
 However, to make life easy we will use a few reference implementations to guide us.
 
-### Ionic Conference App
+#### Ionic Conference App
 
 The ionic conference app is a full featured app built by the ionic team which includes many
 mobile apps features such as a sidemenu, tabs, modals and many more. You can use it to understand how to structure
@@ -56,7 +56,7 @@ The idea would be to look at how they have done things and try and replicate it 
 
 [Ionic Conference App](https://github.com/ionic-team/ionic-conference-app)
 
-### Matt Raible 21 Points App
+#### Matt Raible 21 Points App
 This is a full application with API access via REST and is a good example to look at when working with services.
 In Angular unlike React we don't need redux as state can easily be propagated through service providers.
 
