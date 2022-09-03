@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {LocalStorageService} from 'ngx-webstorage';
 import {Observable} from 'rxjs';
 import {SERVER_API_URL} from '../../../app.constants';
-import {map} from "rxjs/operators";
+import {map} from 'rxjs/operators';
 
 
 @Injectable({providedIn: 'root'})
