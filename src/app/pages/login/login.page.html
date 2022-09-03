@@ -12,30 +12,29 @@
   <div class="login-logo">
     <img src="../../../assets/img/appicon.svg" alt="Ionic logo">
   </div>
-  <h3>Login</h3>
-  <form  novalidate>
+  <form #loginForm="ngForm" novalidate>
     <ion-list>
       <ion-item>
-        <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input name="username" type="text"  spellcheck="false" autocapitalize="off"
+        <ion-label position="stacked" color="primary">Email</ion-label>
+        <ion-input [(ngModel)]="loginDetails.email" name="email" type="email" #email="ngModel" spellcheck="false" autocapitalize="off"
                    required>
         </ion-input>
       </ion-item>
 
       <ion-text color="danger">
-        <p  class="ion-padding-start">
+        <p [hidden]="email.valid || submitted === false" class="ion-padding-start">
           Username is required
         </p>
       </ion-text>
 
       <ion-item>
         <ion-label position="stacked" color="primary">Password</ion-label>
-        <ion-input name="password" type="password"  required>
+        <ion-input [(ngModel)]="loginDetails.password" name="password" type="password" #password="ngModel" required>
         </ion-input>
       </ion-item>
 
       <ion-text color="danger">
-        <p  class="ion-padding-start">
+        <p [hidden]="password.valid || submitted === false" class="ion-padding-start">
           Password is required
         </p>
       </ion-text>
@@ -43,10 +42,10 @@
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" expand="block">Login</ion-button>
+        <ion-button (click)="onLogin(loginForm)" type="submit" expand="block">Login</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button color="light" expand="block">Signup</ion-button>
+        <ion-button (click)="onRegister()" color="light" expand="block">Register</ion-button>
       </ion-col>
     </ion-row>
   </form>
