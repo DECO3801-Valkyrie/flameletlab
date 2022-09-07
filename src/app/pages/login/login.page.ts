@@ -13,6 +13,7 @@ import {LoginService} from '../../providers/core/auth/login.service';
 export class LoginPage {
   loginDetails: ILogin = { email: '', password: '', remember: true};
   loginError = false;
+  submitted: any | boolean;
 
   constructor(
     public router: Router,
@@ -29,6 +30,7 @@ export class LoginPage {
         })
         .catch(() => {
           this.loginError = true;
+          console.log('Error thrown!!!')
         });
     }
   }

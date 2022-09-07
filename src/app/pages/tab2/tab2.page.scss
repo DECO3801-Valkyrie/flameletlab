@@ -1,0 +1,23 @@
+ion-card {
+  --size: 140px;
+  --border-radius: 14px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.image {
+  --width: 100px;
+  --height: 100px;
+}
+
+.mat-elevation-z5 {
+  border: 1px solid #000;
+  box-shadow: 5px 5px #888888;
+}
+
+mat-card::ng-deep.mat-card-header-text {
+  width: 100%;
+}
