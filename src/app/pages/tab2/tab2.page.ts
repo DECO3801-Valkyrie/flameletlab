@@ -8,27 +8,9 @@ import {AddNewTasksPage} from '../add-new-tasks/add-new-tasks.page';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  todoList = [
-    {
-      itemName: 'Example',
-      itemDueDate: '03-09-22',
-      itemPriority: 'high',
-      itemCategory: 'Work'
-    },
-    {
-      itemName: 'Example2',
-      itemDueDate: '04-09-22',
-      itemPriority: 'low',
-      itemCategory: 'Work'
-    },
-    {
-      itemName: 'Example3',
-      itemDueDate: '05-09-22',
-      itemPriority: 'medium',
-      itemCategory: 'Personal'
-    }];
+  todoList = [];
   today: number = Date.now();
-  slideOpt ={
+  slideOpt = {
     direction: 'horizontal',
     slidesPerView: 2,
     pagination: {
@@ -48,6 +30,10 @@ export class Tab2Page {
     const modal = await this.modalCtrl.create({
       component: AddNewTasksPage
     });
+    modal.onDidDismiss().then(newTaskObject => {
+      console.log(newTaskObject.data);
+      this.todoList.push(newTaskObject.data);
+    })
     return await modal.present();
   }
 }

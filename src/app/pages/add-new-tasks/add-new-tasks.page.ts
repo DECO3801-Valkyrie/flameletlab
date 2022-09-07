@@ -11,11 +11,18 @@ export class AddNewTasksPage implements OnInit {
   taskCategory;
   taskPriorities;
 
+  addTaskObject;
+
   constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {}
 
   async dismiss() {
-    await this.modalCtrl.dismiss();
+    await this.modalCtrl.dismiss(this.addTaskObject);
+  }
+
+  addTask() {
+    this.addTaskObject = ({itemName:this.taskName,itemCategory:this.taskCategory,itemPriority:this.taskPriorities});
+    this.dismiss();
   }
 }

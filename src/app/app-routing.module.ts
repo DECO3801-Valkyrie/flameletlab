@@ -34,10 +34,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tab3/tab3.module').then( m => m.Tab3PageModule)
   },
   {
-    path: 'tabs',
-    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  },
-  {
     path: 'add-new-tasks',
     loadChildren: () => import('./pages/add-new-tasks/add-new-tasks.module').then( m => m.AddNewTasksPageModule)
   },
