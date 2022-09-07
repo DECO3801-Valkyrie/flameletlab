@@ -23,7 +23,7 @@ export class RegisterPage {
       this.registerService.registerNewUser(this.registrationDetails).subscribe(
         () => {
           this.submitted = true;
-        //  this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/login');
         },
         response => this.processError(response)
       );
