@@ -22,14 +22,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/dashboard/tab1',
+        redirectTo: '/dashboard/tab2',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/dashboard/tab1',
+    redirectTo: '/dashboard/tab2',
     pathMatch: 'full'
   }
 ];
