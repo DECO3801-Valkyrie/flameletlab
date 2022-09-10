@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {AddNewTasksPage} from '../add-new-tasks/add-new-tasks.page';
-import {PrincipalService} from "../../providers/core/auth/principal.service";
-import {WhiteNoiseService} from "../../providers/white-noise.service";
+import {PrincipalService} from '../../providers/core/auth/principal.service';
+import {WhiteNoiseService} from '../../providers/white-noise.service';
 
 @Component({
   selector: 'app-tab2',
@@ -28,34 +28,33 @@ export class Tab2Page {
   };
 
   fullName = '';
-  whiteNoises:Array<any> = [];
-  playingWhiteNoiseIndex:number = -1;
+  whiteNoises: Array<any> = [];
+  playingWhiteNoiseIndex = -1;
 
   constructor(public modalCtrl: ModalController,
               public principal: PrincipalService,
               public whiteNoiseService: WhiteNoiseService) {
     principal.identity(true).then(account => {
-      this.fullName = account.fullName.split(" ")[0];
-    })
+      this.fullName = account.fullName.split(' ')[0];
+    });
   }
 
   ionViewDidEnter() {
     this.whiteNoiseService.getAll().subscribe(resp => {
-      this.whiteNoises = resp.body.map(w => {
-        return {...w, isPlaying: false}
-      });
+      this.whiteNoises = resp.body.map(w => ({...w, isPlaying: false}));
       console.log(resp);
     }, error => {
       console.log(error);
-    })
+    });
     }
 
     onWhiteNoiseRecommendationClicked(audioPath, index) {
     if (this.playingWhiteNoiseIndex >= 0) {
       this.whiteNoises[this.playingWhiteNoiseIndex].isPlaying = false;
-      if (this.playingWhiteNoiseIndex == index) {
+      if (this.playingWhiteNoiseIndex === index) {
         //stop
         this.whiteNoiseService.stop();
+        this.playingWhiteNoiseIndex = -1;
         return;
       }
     }
@@ -71,7 +70,7 @@ export class Tab2Page {
     modal.onDidDismiss().then(newTaskObject => {
       console.log(newTaskObject.data);
       this.todoList.push(newTaskObject.data);
-    })
+    });
     return await modal.present();
   }
 }
