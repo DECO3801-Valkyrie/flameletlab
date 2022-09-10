@@ -32,7 +32,7 @@
     <!-- white noise -->
     <ion-slides [options]="slideOpt">
       <ion-slide *ngFor="let whiteNoise of whiteNoises" >
-        <ion-card class="white-noise-recommendation-card">
+        <ion-card class="white-noise-recommendation-card" (click)="onWhiteNoiseRecommendationClicked(whiteNoise.audioPath)">
           <ion-row>
             <ion-col class="ion-align-items-start ion-no-margin ion-no-padding" size="8">
               <ion-card-header class="white-noise-header">
