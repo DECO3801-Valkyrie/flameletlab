@@ -40,11 +40,15 @@ export class Tab2Page {
 
   ionViewDidEnter() {
     this.whiteNoiseService.getAll().subscribe(resp => {
-      this.whiteNoises = resp.body
+      this.whiteNoises = resp.body;
       console.log(resp);
     }, error => {
       console.log(error);
     })
+    }
+
+    onWhiteNoiseRecommendationClicked(audioPath) {
+      this.whiteNoiseService.play(audioPath);
     }
 
   async addTask() {
