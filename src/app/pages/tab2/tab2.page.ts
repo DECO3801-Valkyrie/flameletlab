@@ -28,7 +28,8 @@ export class Tab2Page {
   };
 
   fullName = '';
-  whiteNoises:Array<any> = []
+  whiteNoises:Array<any> = [];
+  playingWhiteNoiseIndex:number = -1;
 
   constructor(public modalCtrl: ModalController,
               public principal: PrincipalService,
@@ -40,14 +41,26 @@ export class Tab2Page {
 
   ionViewDidEnter() {
     this.whiteNoiseService.getAll().subscribe(resp => {
-      this.whiteNoises = resp.body;
+      this.whiteNoises = resp.body.map(w => {
+        return {...w, isPlaying: false}
+      });
       console.log(resp);
     }, error => {
       console.log(error);
     })
     }
 
-    onWhiteNoiseRecommendationClicked(audioPath) {
+    onWhiteNoiseRecommendationClicked(audioPath, index) {
+    if (this.playingWhiteNoiseIndex >= 0) {
+      this.whiteNoises[this.playingWhiteNoiseIndex].isPlaying = false;
+      if (this.playingWhiteNoiseIndex == index) {
+        //stop
+        this.whiteNoiseService.stop();
+        return;
+      }
+    }
+      this.whiteNoises[index].isPlaying = true;
+      this.playingWhiteNoiseIndex = index;
       this.whiteNoiseService.play(audioPath);
     }
 

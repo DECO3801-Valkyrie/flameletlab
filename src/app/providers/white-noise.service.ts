@@ -35,4 +35,11 @@ export class WhiteNoiseService {
     this.audio.play();
   }
 
+  stop() {
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
+  }
+
 }
