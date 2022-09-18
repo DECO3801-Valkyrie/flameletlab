@@ -1,4 +1,4 @@
-import {Injector, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -11,6 +11,7 @@ import {JwtInterceptor} from './providers/core/http-interceptors/jwt.interceptor
 import {JwtExpiredInterceptor} from './providers/core/http-interceptors/jwt.expired.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {LocalStorageService, NgxWebstorageModule} from 'ngx-webstorage';
+import {StarRatingModule} from "angular-star-rating";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import {LocalStorageService, NgxWebstorageModule} from 'ngx-webstorage';
     BrowserModule,
     IonicModule.forRoot(),
     NgxWebstorageModule.forRoot(),
+    StarRatingModule.forRoot(),
     AppRoutingModule,
     FlameLetLabCoreModule
   ],
@@ -36,5 +38,6 @@ import {LocalStorageService, NgxWebstorageModule} from 'ngx-webstorage';
     deps: [Injector]
   }],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

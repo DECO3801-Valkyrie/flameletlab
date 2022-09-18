@@ -22,8 +22,8 @@ const routes: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
-    path: 'tab1',
-    loadChildren: () => import('./pages/tab1/tab1.module').then( m => m.Tab1PageModule)
+    path: 'workplace-rater',
+    loadChildren: () => import('./pages/workplace-rater/workplace-rater.module').then(m => m.WorkplaceRaterPageModule)
   },
   {
     path: 'tab2',

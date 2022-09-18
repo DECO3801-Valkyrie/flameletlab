@@ -9,8 +9,8 @@ const routes: Routes = [
     component: DashboardPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'workplace-rater',
+        loadChildren: () => import('../workplace-rater/workplace-rater.module').then(m => m.WorkplaceRaterPageModule)
       },
       {
         path: 'tab2',
