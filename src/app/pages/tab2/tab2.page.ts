@@ -3,6 +3,7 @@ import {ModalController} from '@ionic/angular';
 import {AddNewTasksPage} from '../add-new-tasks/add-new-tasks.page';
 import {PrincipalService} from '../../providers/core/auth/principal.service';
 import {WhiteNoiseService} from '../../providers/white-noise.service';
+import {PrimeIcons} from 'primeng/api';
 
 @Component({
   selector: 'app-tab2',
@@ -10,6 +11,9 @@ import {WhiteNoiseService} from '../../providers/white-noise.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  events1: any[];
+
+  events2: any[];
   todoList = [];
   today: number = Date.now();
   slideOpt = {
@@ -46,6 +50,36 @@ export class Tab2Page {
     }, error => {
       console.log(error);
     });
+
+    this.events1 = [
+      {
+        status: 'Ordered',
+        date: '15/10/2020 10:30',
+        icon: PrimeIcons.SHOPPING_CART,
+        color: '#9C27B0',
+        image: 'game-controller.jpg'
+      },
+      {
+        status: 'Processing',
+        date: '15/10/2020 14:00',
+        icon: PrimeIcons.COG,
+        color: '#673AB7'
+      },
+      {
+        status: 'Shipped',
+        date: '15/10/2020 16:15',
+        icon: PrimeIcons.ENVELOPE,
+        color: '#FF9800'
+      },
+      {
+        status: 'Delivered',
+        date: '16/10/2020 10:00',
+        icon: PrimeIcons.CHECK,
+        color: '#607D8B'
+      }
+    ];
+
+    this.events2 = ['2020', '2021', '2022', '2023'];
     }
 
     onWhiteNoiseRecommendationClicked(audioPath, index) {
