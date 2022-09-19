@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DashboardPage} from './dashboard.page';
+import {TabsPage} from './tabs-page';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardPage,
+    component: TabsPage,
     children: [
       {
         path: 'workplace-rater',
@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/dashboard/tab2',
+        redirectTo: '/tabs/tab2',
         pathMatch: 'full'
       }
     ]

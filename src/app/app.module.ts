@@ -11,7 +11,7 @@ import {JwtInterceptor} from './providers/core/http-interceptors/jwt.interceptor
 import {JwtExpiredInterceptor} from './providers/core/http-interceptors/jwt.expired.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {LocalStorageService, NgxWebstorageModule} from 'ngx-webstorage';
-import {StarRatingModule} from "angular-star-rating";
+import {StarRatingModule} from 'angular-star-rating';
 
 @NgModule({
   declarations: [AppComponent],
