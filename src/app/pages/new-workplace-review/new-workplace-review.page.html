@@ -35,6 +35,15 @@
       <div [innerHTML]="notFound"></div>
     </ng-template>
   </div>
+  <div class="ion-margin" *ngIf="selectedPlace !== null">
+    <h6>Selected:</h6>
+    <ion-item>
+      <ion-label>
+        <h3>{{ selectedPlace.name }}</h3>
+        <p>{{ selectedPlace.addressLine }}</p>
+      </ion-label>
+    </ion-item>
+  </div>
 </ion-content>
 <ion-footer class="ion-no-margin ion-no-padding">
   <ion-button class="ion-no-margin" expand="full">Next <ion-icon slot="end" name="arrow-forward-outline"></ion-icon></ion-button>

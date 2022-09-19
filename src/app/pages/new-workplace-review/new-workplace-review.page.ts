@@ -9,8 +9,9 @@ import {GooglePlacesApiService} from '../../providers/google-places-api.service'
 export class NewWorkplaceReviewPage implements OnInit {
   public data: Array<any> = [];
   public timeout: any;
-  public keyword = "name";
+  public keyword = 'name';
   public subscription: any;
+  public selectedPlace: any = null;
 
   constructor(public googlePlacesApiService: GooglePlacesApiService) { }
 
@@ -19,10 +20,12 @@ export class NewWorkplaceReviewPage implements OnInit {
   }
 
   selectEvent(item) {
-    // do something with selected item
+    this.selectedPlace = item;
   }
 
   onChangeSearch(val: string) {
+    this.selectedPlace = null;
+
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
@@ -44,7 +47,6 @@ export class NewWorkplaceReviewPage implements OnInit {
 
   // we trust Google - it already filters
   filter(items: any[], query: string): any[] {
-    console.log(items);
     return items;
   }
 
