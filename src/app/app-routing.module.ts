@@ -44,6 +44,10 @@ const routes: Routes = [
   {
     path: 'user-workplace-rating',
     loadChildren: () => import('./pages/user-workplace-rating/user-workplace-rating.module').then( m => m.UserWorkplaceRatingPageModule)
+  },
+  {
+    path: 'workplace-reviews',
+    loadChildren: () => import('./pages/workplace-reviews/workplace-reviews.module').then( m => m.WorkplaceReviewsPageModule)
   }
 
 ];
