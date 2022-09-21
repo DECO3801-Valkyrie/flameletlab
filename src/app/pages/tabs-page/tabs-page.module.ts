@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
-import {DashboardPageRoutingModule} from './dashboard-routing.module';
-import {DashboardPage} from './dashboard.page';
+import {DashboardPageRoutingModule} from './tabs-page-routing.module';
+import {TabsPage} from './tabs-page';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import {DashboardPage} from './dashboard.page';
     DashboardPageRoutingModule
   ],
   declarations: [
-    DashboardPage,
+    TabsPage,
   ]
 })
-export class DashboardModule { }
+export class TabsPageModule { }

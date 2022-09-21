@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Workplace Review</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <ion-label position="floating">Find your workplace</ion-label>
+  </ion-item>
+  <div class="ng-autocomplete">
+    <ng-autocomplete
+      [data]="data"
+      [searchKeyword]="keyword"
+      [customFilter]="filter"
+      placeholder="Select your workplace"
+      (selected)='selectEvent($event)'
+      (inputChanged)='onChangeSearch($event)'
+      (inputFocused)='onFocused($event)'
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate">
+    </ng-autocomplete>
+
+    <ng-template #itemTemplate let-item>
+      <a>
+        <p [innerHTML]="item.name"></p>
+        <p [innerHTML]="item.addressLine"></p>
+      </a>
+    </ng-template>
+
+    <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+    </ng-template>
+  </div>
+  <div class="ion-margin" *ngIf="selectedPlace !== null">
+    <h6>Selected:</h6>
+    <ion-item>
+      <ion-label>
+        <h3>{{ selectedPlace.name }}</h3>
+        <p>{{ selectedPlace.addressLine }}</p>
+      </ion-label>
+    </ion-item>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-margin ion-no-padding">
+  <ion-button [disabled]="selectedPlace === null" routerLink="/user-workplace-rating" class="ion-no-margin" expand="full">Next <ion-icon slot="end" name="arrow-forward-outline"></ion-icon></ion-button>
+</ion-footer>

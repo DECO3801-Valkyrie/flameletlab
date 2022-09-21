@@ -2,11 +2,11 @@ import {Router} from '@angular/router';
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard-page',
-  templateUrl: 'dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
+  selector: 'app-tabs-page',
+  templateUrl: 'tabs-page.html',
+  styleUrls: ['./tabs-page.scss'],
 })
-export class DashboardPage {
+export class TabsPage {
 
   constructor(
     public router: Router

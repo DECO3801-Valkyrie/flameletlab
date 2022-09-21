@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DashboardPage} from './dashboard.page';
+import {TabsPage} from './tabs-page';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardPage,
+    component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'workplace-rater',
+        loadChildren: () => import('../workplace-rater/workplace-rater.module').then(m => m.WorkplaceRaterPageModule)
       },
       {
         path: 'tab2',
@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/dashboard/tab2',
+        redirectTo: '/tabs/tab2',
         pathMatch: 'full'
       }
     ]

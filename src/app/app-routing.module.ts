@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {UserRouteAccessService} from "./providers/core/auth/user-route-access.service";
+import {UserRouteAccessService} from './providers/core/auth/user-route-access.service';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'tabs',
     pathMatch: 'full'
   },
   {
@@ -17,13 +17,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs-page/tabs-page.module').then(m => m.TabsPageModule),
     canActivate: [UserRouteAccessService]
   },
   {
-    path: 'tab1',
-    loadChildren: () => import('./pages/tab1/tab1.module').then( m => m.Tab1PageModule)
+    path: 'workplace-rater',
+    loadChildren: () => import('./pages/workplace-rater/workplace-rater.module').then(m => m.WorkplaceRaterPageModule)
   },
   {
     path: 'tab2',
@@ -37,6 +37,14 @@ const routes: Routes = [
     path: 'add-new-tasks',
     loadChildren: () => import('./pages/add-new-tasks/add-new-tasks.module').then( m => m.AddNewTasksPageModule)
   },
+  {
+    path: 'new-workplace-review',
+    loadChildren: () => import('./pages/new-workplace-review/new-workplace-review.module').then( m => m.NewWorkplaceReviewPageModule)
+  },
+  {
+    path: 'user-workplace-rating',
+    loadChildren: () => import('./pages/user-workplace-rating/user-workplace-rating.module').then( m => m.UserWorkplaceRatingPageModule)
+  }
 
 ];
 
