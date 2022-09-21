@@ -65,3 +65,10 @@ This project shows how to implement services and how you can consume them in you
 It's a recommended example to look at because it uses Spring Boot as a backend. Which FlameletLab also uses.
 
 [21 Points App](https://github.com/mraible/21-points/tree/main/src/main/webapp)
+
+
+### Development
+
+#### CORS
+If you run into a CORS issue on the frontend you will likely need this plugin.
+[Chrome CORS Plugin](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en)
