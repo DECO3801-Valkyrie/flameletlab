@@ -11,6 +11,7 @@ import {WhiteNoiseService} from '../../providers/white-noise.service';
 })
 export class Tab2Page {
   todoList = [];
+  clearFlag = false;
   today: number = Date.now();
   slideOpt = {
     direction: 'horizontal',
@@ -72,5 +73,14 @@ export class Tab2Page {
       this.todoList.push(newTaskObject.data);
     });
     return await modal.present();
+  }
+
+  areNoTasksAdded() {
+    this.clearFlag = this.todoList === [];
+    return this.clearFlag
+  }
+
+  resetTasks() {
+    this.todoList = [];
   }
 }
