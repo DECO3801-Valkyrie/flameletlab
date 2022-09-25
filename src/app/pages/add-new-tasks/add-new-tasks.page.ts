@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 
 @Component({
@@ -9,8 +9,7 @@ import {ModalController} from '@ionic/angular';
 export class AddNewTasksPage implements OnInit {
   taskName;
   taskCategory;
-  taskPriorities;
-
+  taskDueDate;
   addTaskObject;
 
   constructor(public modalCtrl: ModalController) {}
@@ -22,7 +21,9 @@ export class AddNewTasksPage implements OnInit {
   }
 
   addTask() {
-    this.addTaskObject = ({itemName:this.taskName,itemCategory:this.taskCategory,itemPriority:this.taskPriorities});
+    this.addTaskObject = ({
+      itemName:this.taskName,itemCategory:this.taskCategory,itemDueDate:this.taskDueDate
+    });
     this.dismiss();
   }
 }

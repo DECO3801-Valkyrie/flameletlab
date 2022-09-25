@@ -7,7 +7,7 @@ import {IonicModule} from '@ionic/angular';
 import {UserWorkplaceRatingPageRoutingModule} from './user-workplace-rating-routing.module';
 
 import {UserWorkplaceRatingPage} from './user-workplace-rating.page';
-import {StarRatingModule} from "angular-star-rating";
+import {StarRatingModule} from 'angular-star-rating';
 
 @NgModule({
     imports: [

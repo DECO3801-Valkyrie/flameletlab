@@ -12,6 +12,7 @@ import {JwtExpiredInterceptor} from './providers/core/http-interceptors/jwt.expi
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {LocalStorageService, NgxWebstorageModule} from 'ngx-webstorage';
 import {StarRatingModule} from 'angular-star-rating';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import {StarRatingModule} from 'angular-star-rating';
     NgxWebstorageModule.forRoot(),
     StarRatingModule.forRoot(),
     AppRoutingModule,
-    FlameLetLabCoreModule
+    FlameLetLabCoreModule,
+    FormsModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

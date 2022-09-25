@@ -1,0 +1,27 @@
+.search-groups, .create-chat-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.search-groups {
+  flex-direction: row;
+}
+
+.create-chat-wrapper {
+  flex-direction: column;
+  width:auto;
+  height: 100%;
+}
+
+.create-chat-text {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.custom-button-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
