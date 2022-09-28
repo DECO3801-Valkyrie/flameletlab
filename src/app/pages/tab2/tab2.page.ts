@@ -20,13 +20,6 @@ export class Tab2Page {
       el: '.swiper-pagination',
     }
   };
-  slideOptTodo ={
-    direction: 'vertical',
-    slidesPerView: 1,
-    pagination: {
-      el: '.swiper-pagination',
-    }
-  };
 
   fullName = '';
   whiteNoises: Array<any> = [];
@@ -71,6 +64,9 @@ export class Tab2Page {
     modal.onDidDismiss().then(newTaskObject => {
       console.log(newTaskObject.data);
       this.todoList.push(newTaskObject.data);
+      if (newTaskObject.data == undefined) {
+        this.todoList.pop();
+      }
     });
     return await modal.present();
   }
@@ -82,5 +78,13 @@ export class Tab2Page {
 
   resetTasks() {
     this.todoList = [];
+  }
+
+  minAndSec(i) {
+    let secs = this.whiteNoises[i].length;
+    let quotient = Math.floor(secs/60);
+    let remainder = secs % 60;
+
+    return "" + quotient + "m " + remainder + "s";
   }
 }
