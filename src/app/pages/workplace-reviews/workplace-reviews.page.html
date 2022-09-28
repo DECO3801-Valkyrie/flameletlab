@@ -25,10 +25,10 @@
       </ion-item-divider>
       <ion-item *ngFor="let r of reviews" detail="true">
         <ion-label>
-          <h3>#{{r}}</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum, eros quis efficitur ullamcorper, tellus metus eleifend urna, sit amet posuere libero nisl vitae orci. Vivamus gravida massa id libero condimentum, non pretium leo auctor. Aenean faucibus congue augue eget rhoncus. Curabitur pharetra venenatis metus dictum elementum. Mauris volutpat urna nec commodo molestie. Praesent ex lectus, porttitor lacinia viverra nec, volutpat at lorem. Donec sed arcu lacinia, vestibulum velit a, lobortis quam. Etiam vulputate at ligula nec iaculis. Etiam sit amet tincidunt ante. Etiam non magna vitae leo imperdiet maximus in et sapien.</p>
+          <h3>#{{r.id}}</h3>
+          <p>{{r.review}}</p>
         </ion-label>
-        <star-rating labelText="3.0" [readOnly]="true"  labelPosition="right" [starType]="'svg'" [rating]="3.0"></star-rating>
+        <star-rating [labelText]="r.rating.toString()" [readOnly]="true"  labelPosition="right" [starType]="'svg'" [rating]="r.rating"></star-rating>
       </ion-item>
     </ion-item-group>
   </ion-list>
