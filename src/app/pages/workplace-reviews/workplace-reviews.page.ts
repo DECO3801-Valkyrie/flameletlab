@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IWorkplaceRating} from "../../model/workplace-rating";
 import {EntityArrayResponseType, WorkplaceRatingService} from "../../providers/workplace-rating.service";
 import {ActivatedRoute} from "@angular/router";
+import {IWorkplace} from "../../model/workplace";
 
 @Component({
   selector: 'app-workplace-reviews',
@@ -11,6 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 export class WorkplaceReviewsPage implements OnInit {
 
   reviews?: IWorkplaceRating[];
+  workplace?: IWorkplace;
 
   constructor(private workplaceRatingService: WorkplaceRatingService,
               private route: ActivatedRoute) { }
@@ -26,6 +28,12 @@ export class WorkplaceReviewsPage implements OnInit {
           this.reviews = res.body;
         },
       });
+      this.workplaceRatingService.getWorkplaceByPlaceId(params.placeId).subscribe(
+        {
+          next: (res) => {
+            this.workplace = res.body;
+          }
+        });
     });
   }
 

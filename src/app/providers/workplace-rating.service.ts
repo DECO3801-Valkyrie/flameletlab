@@ -25,4 +25,8 @@ export class WorkplaceRatingService {
     return this.http.get<IWorkplace[]>(SERVER_API_URL + 'api/workplace-ratings/workplaces', { observe: 'response' });
   }
 
+  getWorkplaceByPlaceId(placeId: string): Observable<HttpResponse<IWorkplace>> {
+    return this.http.get<IWorkplace>(SERVER_API_URL + `api/workplace-ratings/workplaces/${placeId}`, { observe: 'response' });
+  }
+
 }

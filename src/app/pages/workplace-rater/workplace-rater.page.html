@@ -24,18 +24,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
+  <ion-card *ngFor="let workplace of workplaces">
     <ion-card-content>
       <ion-card-header>
-        <ion-card-title>McDonalds</ion-card-title>
-        <ion-card-subtitle>Jindalee 28 High Road, QLD</ion-card-subtitle>
+        <ion-card-title>{{ workplace.name }}</ion-card-title>
+        <ion-card-subtitle>{{ workplace.location }}</ion-card-subtitle>
       </ion-card-header>
       <ion-row class="ion-no-padding ion-no-margin">
         <ion-col size="8" >
-          <star-rating labelText="3.0 (250)" [readOnly]="true"  labelPosition="right" [starType]="'svg'" [rating]="3.0"></star-rating>
+          <star-rating [labelText]="workplace.averageRating + ' (' + workplace.reviewsCount+ ')'" [readOnly]="true"  labelPosition="right" [starType]="'svg'" [rating]="workplace.averageRating"></star-rating>
         </ion-col>
         <ion-col size="4">
-          <ion-button routerLink="/workplace-reviews" fill="clear">
+          <ion-button [routerLink]="['/workplace-reviews', workplace.placeId ]" fill="clear">
             REVIEWS <ion-icon name="arrow-forward-outline"></ion-icon>
           </ion-button>
         </ion-col>

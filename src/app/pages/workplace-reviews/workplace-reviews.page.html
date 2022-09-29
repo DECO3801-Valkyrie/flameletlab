@@ -7,13 +7,13 @@
 <ion-content>
   <ion-item lines="none">
     <ion-label>
-      <h1>McDonalds</h1>
-      <p>Jindalee Some Road 123, QLD</p>
+      <h1>{{ workplace?.name}}</h1>
+      <p>{{ workplace?.location}}</p>
     </ion-label>
 
   </ion-item>
   <ion-item>
-    <star-rating labelText="3.0 (250)" [readOnly]="true"  labelPosition="right" [starType]="'svg'" [rating]="3.0"></star-rating>
+    <star-rating [labelText]="workplace?.averageRating + ' (' + workplace?.reviewsCount+ ')'" [readOnly]="true"  labelPosition="right" [starType]="'svg'" [rating]="workplace?.averageRating"></star-rating>
     <ion-button slot="end">Add Review</ion-button>
   </ion-item>
   <ion-list>
