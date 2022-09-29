@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {IWorkplaceRating} from "../../model/workplace-rating";
-import {EntityArrayResponseType, WorkplaceRatingService} from "../../providers/workplace-rating.service";
-import {ActivatedRoute} from "@angular/router";
-import {IWorkplace} from "../../model/workplace";
+import {IWorkplaceRating} from '../../model/workplace-rating';
+import {EntityArrayResponseType, WorkplaceRatingService} from '../../providers/workplace-rating.service';
+import {ActivatedRoute} from '@angular/router';
+import {IWorkplace} from '../../model/workplace';
 
 @Component({
   selector: 'app-workplace-reviews',
@@ -13,9 +13,17 @@ export class WorkplaceReviewsPage implements OnInit {
 
   reviews?: IWorkplaceRating[];
   workplace?: IWorkplace;
+  selectedReview?: IWorkplaceRating;
+  isDetailsModalOpen = false;
 
   constructor(private workplaceRatingService: WorkplaceRatingService,
               private route: ActivatedRoute) { }
+
+
+
+  setIsDetailsModalOpen(isOpen: boolean) {
+    this.isDetailsModalOpen = isOpen;
+  }
 
   ngOnInit() {
     this.load();
@@ -35,6 +43,11 @@ export class WorkplaceReviewsPage implements OnInit {
           }
         });
     });
+  }
+
+  onReviewClick(review: IWorkplaceRating) {
+    this.selectedReview = review;
+    this.isDetailsModalOpen = true;
   }
 
 }

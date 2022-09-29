@@ -11,8 +11,10 @@ import {IWorkplace} from "../../model/workplace";
 export class WorkplaceRaterPage implements OnInit {
 
   workplaces?: IWorkplace[];
+  originalWorkplaces?: IWorkplace[];
   showSearchbar: boolean;
   ios: boolean;
+  queryText?: string;
 
   constructor(public config: Config, public workplaceRatingService: WorkplaceRatingService) { }
 
@@ -24,9 +26,15 @@ export class WorkplaceRaterPage implements OnInit {
   load() {
     this.workplaceRatingService.getAllWorkplaces().subscribe({
       next: (resp) => {
-        this.workplaces = resp.body;
+        this.workplaces = [...resp.body];
+        this.originalWorkplaces = [...resp.body];
       }
     });
+  }
+
+  onSearch() {
+    this.workplaces = this.originalWorkplaces.filter(w => w.name.toLowerCase().includes(this.queryText.toLowerCase())
+      || w.location.toLowerCase().includes(this.queryText.toLowerCase()));
   }
 
 }
