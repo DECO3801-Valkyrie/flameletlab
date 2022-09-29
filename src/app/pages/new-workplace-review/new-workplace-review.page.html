@@ -46,5 +46,5 @@
   </div>
 </ion-content>
 <ion-footer class="ion-no-margin ion-no-padding">
-  <ion-button [disabled]="selectedPlace === null" routerLink="/user-workplace-rating" class="ion-no-margin" expand="full">Next <ion-icon slot="end" name="arrow-forward-outline"></ion-icon></ion-button>
+  <ion-button [disabled]="selectedPlace === null" (click)="onNext()" class="ion-no-margin" expand="full">Next <ion-icon slot="end" name="arrow-forward-outline"></ion-icon></ion-button>
 </ion-footer>

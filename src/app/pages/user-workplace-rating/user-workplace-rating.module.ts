@@ -8,6 +8,7 @@ import {UserWorkplaceRatingPageRoutingModule} from './user-workplace-rating-rout
 
 import {UserWorkplaceRatingPage} from './user-workplace-rating.page';
 import {StarRatingModule} from 'angular-star-rating';
+import {WorkplaceRatingService} from '../../providers/workplace-rating.service';
 
 @NgModule({
     imports: [
@@ -19,4 +20,10 @@ import {StarRatingModule} from 'angular-star-rating';
     ],
   declarations: [UserWorkplaceRatingPage]
 })
-export class UserWorkplaceRatingPageModule {}
+export class UserWorkplaceRatingPageModule {
+
+  constructor(private workplaceRatingService: WorkplaceRatingService) {
+  }
+
+  
+}

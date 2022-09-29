@@ -18,5 +18,11 @@ export class GooglePlacesApiService {
     return this.http.get<IAccount>(`${this.url}&input=${query}`, { observe: 'response' });
   }
 
+  getPlaceByPlaceId(placeId): Observable<HttpResponse<any>> {
+      return this.http.get<IAccount>(
+        `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${GOOGLE_PLACES_API_KEY}`,
+        { observe: 'response' });
+  }
+
 
 }
