@@ -35,18 +35,19 @@
     <!-- white noise -->
     <ion-slides [options]="slideOpt">
       <ion-slide *ngFor="let whiteNoise of whiteNoises;index as i" >
-        <ion-card class="white-noise-recommendation-card" >
+        <ion-card class="white-noise-recommendation-card">
+          <img alt="white noise image" class="white-noise-images" src="../../assets/images/{{whiteNoise.title}}.svg"/>
           <ion-row>
             <ion-col class="ion-align-items-start ion-no-margin ion-no-padding" size="8">
               <ion-card-header class="white-noise-header">
                 <ion-card-title class="white-noise-title">{{ whiteNoise.title }}</ion-card-title>
-                <ion-card-subtitle class="white-noise-subtitle">{{ whiteNoise.length}}</ion-card-subtitle>
+                <ion-card-subtitle class="white-noise-subtitle">{{minAndSec(i)}}</ion-card-subtitle>
               </ion-card-header>
             </ion-col>
             <ion-col size="4"></ion-col>
           </ion-row>
           <ion-card-content>
-            <button ion-fab icon-only class="white-noise-player" (click)="onWhiteNoiseRecommendationClicked(whiteNoise.audioPath, i)">
+            <button class="white-noise-player" (click)="onWhiteNoiseRecommendationClicked(whiteNoise.audioPath, i)">
               <ion-icon [hidden]="whiteNoise.isPlaying" name="play"></ion-icon>
               <ion-icon [hidden]="!whiteNoise.isPlaying" name="stop"></ion-icon>
             </button>
@@ -57,31 +58,27 @@
   </ion-card>
 
   <!-- to do list -->
-  <!--  <ion-slides [options]="slideOptTodo">-->
-  <!--    <ion-slide>-->
-  <ion-card class="timeline">
+  <ion-card class="tasks">
     <ion-card-header>
       <ion-card-subtitle>{{today | date:'fullDate'}}</ion-card-subtitle>
       <ion-card-title>Todo</ion-card-title>
     </ion-card-header>
 
     <!-- the list -->
-    <ion-card-content *ngFor="let item of todoList" class="timeline-event">
+    <ion-card class="timeline-event" *ngFor="let item of todoList">
       <div class="timeline-point-container">
         <ion-checkbox slot="start" class="timeline-point"></ion-checkbox>
       </div>
-      <ion-card class="timeline-content">
-        <ion-card-header>
-          <ion-card-title>
-            {{item.itemName}}
-          </ion-card-title>
-          <ion-card-subtitle class="timeline-date">
-            {{item.itemDueDate | date:'mediumDate'}}
-          </ion-card-subtitle>
-          <span class="time">{{item.itemDueDate | date:'shortTime'}}</span>
-        </ion-card-header>
-      </ion-card>
-    </ion-card-content>
+      <ion-card-header class="task-header">
+        <ion-card-title>
+          {{item.itemName}}
+        </ion-card-title>
+        <ion-card-subtitle class="timeline-date">
+          {{item.itemDueDate | date:'mediumDate'}}
+        </ion-card-subtitle>
+        <span class="time">{{item.itemDueDate | date:'shortTime'}}</span>
+      </ion-card-header>
+    </ion-card>
     <ion-button class="clear-button" [hidden]="areNoTasksAdded()" (click)="resetTasks()">Clear</ion-button>
   </ion-card>
 
