@@ -3,6 +3,7 @@ import {ModalController} from '@ionic/angular';
 import {AddNewTasksPage} from '../add-new-tasks/add-new-tasks.page';
 import {PrincipalService} from '../../providers/core/auth/principal.service';
 import {WhiteNoiseService} from '../../providers/white-noise.service';
+import {TodoService} from "../../providers/core/todo.service";
 
 @Component({
   selector: 'app-tab2',
@@ -27,7 +28,8 @@ export class Tab2Page {
 
   constructor(public modalCtrl: ModalController,
               public principal: PrincipalService,
-              public whiteNoiseService: WhiteNoiseService) {
+              public whiteNoiseService: WhiteNoiseService,
+              public todoService: TodoService) {
     principal.identity(true).then(account => {
       this.fullName = account.fullName.split(' ')[0];
     });
@@ -39,6 +41,11 @@ export class Tab2Page {
       console.log(resp);
     }, error => {
       console.log(error);
+    });
+    this.todoService.getAll().subscribe({
+      next: (resp) => {
+        this.todoList = resp.body.todos;
+      }
     });
     }
 
@@ -62,18 +69,23 @@ export class Tab2Page {
       component: AddNewTasksPage
     });
     modal.onDidDismiss().then(newTaskObject => {
-      console.log(newTaskObject.data);
-      this.todoList.push(newTaskObject.data);
-      if (newTaskObject.data == undefined) {
-        this.todoList.pop();
-      }
+      // console.log(newTaskObject.data);
+      // this.todoList.push(newTaskObject.data);
+      // if (newTaskObject.data == undefined) {
+      //   this.todoList.pop();
+      // }
+      this.todoService.getAll().subscribe({
+        next: (resp) => {
+          this.todoList = resp.body.todos;
+        }
+      });
     });
     return await modal.present();
   }
 
   areNoTasksAdded() {
     this.clearFlag = this.todoList === [];
-    return this.clearFlag
+    return this.clearFlag;
   }
 
   resetTasks() {

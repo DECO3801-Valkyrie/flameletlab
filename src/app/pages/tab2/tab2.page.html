@@ -71,12 +71,12 @@
       </div>
       <ion-card-header class="task-header">
         <ion-card-title>
-          {{item.itemName}}
+          {{item.name}}
         </ion-card-title>
         <ion-card-subtitle class="timeline-date">
-          {{item.itemDueDate | date:'mediumDate'}}
+          {{item.estimatedStart | date:'mediumDate'}}
         </ion-card-subtitle>
-        <span class="time">{{item.itemDueDate | date:'shortTime'}}</span>
+        <span class="time">{{item.estimatedStart | date:'shortTime'}}</span>
       </ion-card-header>
     </ion-card>
     <ion-button class="clear-button" [hidden]="areNoTasksAdded()" (click)="resetTasks()">Clear</ion-button>
