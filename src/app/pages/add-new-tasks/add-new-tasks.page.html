@@ -7,24 +7,26 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>Add Task</ion-card-title>
-    </ion-card-header>
-
     <!-- Input with placeholder -->
     <ion-item>
-      <ion-textarea [(ngModel)]="taskName" placeholder="Task Name"></ion-textarea>
+      <div class="item-wrapper">
+        <ion-label>Task Name</ion-label>
+        <div>
+          <ion-textarea class="task-name" [(ngModel)]="taskName" placeholder="Task Name"></ion-textarea>
+        </div>
+      </div>
     </ion-item>
     <ion-item>
-      <ion-datetime [(ngModel)]="taskDueDate"></ion-datetime>
+      <ion-datetime class="datetime" [(ngModel)]="taskDueDate"></ion-datetime>
     </ion-item>
-
     <ion-item>
-      <ion-label>Category</ion-label>
-      <ion-select [(ngModel)]="taskCategory">
-        <ion-select-option value="work">Work</ion-select-option>
-        <ion-select-option value="personal">Personal</ion-select-option>
-      </ion-select>
+      <div class="item-wrapper">
+        <ion-label>Duration</ion-label>
+        <div class="duration-text">
+          <ion-textarea [(ngModel)]="taskDurationHours" placeholder="HH"></ion-textarea>
+          <ion-textarea [(ngModel)]="taskDurationMinutes" placeholder="MM"></ion-textarea>
+        </div>
+      </div>
     </ion-item>
   </ion-card>
 

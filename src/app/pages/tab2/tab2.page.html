@@ -60,8 +60,8 @@
   <!-- to do list -->
   <ion-card class="tasks">
     <ion-card-header>
+      <ion-card-title>Todo List</ion-card-title>
       <ion-card-subtitle>{{today | date:'fullDate'}}</ion-card-subtitle>
-      <ion-card-title>Todo</ion-card-title>
     </ion-card-header>
 
     <!-- the list -->
@@ -76,10 +76,13 @@
         <ion-card-subtitle class="timeline-date">
           {{item.itemDueDate | date:'mediumDate'}}
         </ion-card-subtitle>
-        <span class="time">{{item.itemDueDate | date:'shortTime'}}</span>
+        <div class="time-duration-box">
+          <span class="time">Start: {{item.itemStartTime}}</span>
+          <span class="duration">Duration: {{item.itemDuration}}</span>
+        </div>
       </ion-card-header>
     </ion-card>
-    <ion-button class="clear-button" [hidden]="areNoTasksAdded()" (click)="resetTasks()">Clear</ion-button>
+    <ion-button class="clear-button" [hidden]="areNoTasksAdded()" (click)="confirmDeleteTask()">Clear</ion-button>
   </ion-card>
 
   <!-- add a to do task -->

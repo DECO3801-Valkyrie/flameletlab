@@ -1,0 +1,23 @@
+ion-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  float: left;
+}
+
+.task-name, .datetime {
+  float: left;
+  clear: left;
+}
+
+.item-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.duration-text {
+  display: flex;
+  flex-direction: row;
+}
