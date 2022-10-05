@@ -42,11 +42,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/new-workplace-review/new-workplace-review.module').then( m => m.NewWorkplaceReviewPageModule)
   },
   {
-    path: 'user-workplace-rating',
+    path: 'user-workplace-rating/:placeId',
     loadChildren: () => import('./pages/user-workplace-rating/user-workplace-rating.module').then( m => m.UserWorkplaceRatingPageModule)
   },
   {
-    path: 'workplace-reviews',
+    path: 'workplace-reviews/:placeId',
     loadChildren: () => import('./pages/workplace-reviews/workplace-reviews.module').then( m => m.WorkplaceReviewsPageModule)
   }
 

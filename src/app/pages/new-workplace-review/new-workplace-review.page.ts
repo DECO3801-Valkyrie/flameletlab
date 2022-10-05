@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GooglePlacesApiService} from '../../providers/google-places-api.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-workplace-review',
@@ -13,7 +14,7 @@ export class NewWorkplaceReviewPage implements OnInit {
   public subscription: any;
   public selectedPlace: any = null;
 
-  constructor(public googlePlacesApiService: GooglePlacesApiService) { }
+  constructor(public googlePlacesApiService: GooglePlacesApiService, public  router: Router) { }
 
 
   ngOnInit() {
@@ -48,6 +49,10 @@ export class NewWorkplaceReviewPage implements OnInit {
   // we trust Google - it already filters
   filter(items: any[], query: string): any[] {
     return items;
+  }
+
+  onNext() {
+     this.router.navigateByUrl( '/user-workplace-rating/' + this.selectedPlace.id);
   }
 
 }
