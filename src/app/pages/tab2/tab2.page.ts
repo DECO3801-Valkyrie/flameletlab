@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ModalController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 import {AddNewTasksPage} from '../add-new-tasks/add-new-tasks.page';
 import {PrincipalService} from '../../providers/core/auth/principal.service';
 import {WhiteNoiseService} from '../../providers/white-noise.service';
@@ -27,7 +27,8 @@ export class Tab2Page {
 
   constructor(public modalCtrl: ModalController,
               public principal: PrincipalService,
-              public whiteNoiseService: WhiteNoiseService) {
+              public whiteNoiseService: WhiteNoiseService,
+              private alertController: AlertController) {
     principal.identity(true).then(account => {
       this.fullName = account.fullName.split(' ')[0];
     });
@@ -78,6 +79,30 @@ export class Tab2Page {
 
   resetTasks() {
     this.todoList = [];
+  }
+
+  async confirmDeleteTask() {
+    const alert = await this.alertController.create({
+      header: 'Delete Tasks?',
+      message: `Are you sure you want to delete all task?`,
+      buttons: [
+        {
+          text: 'Keep them',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            // Do nothing
+          }
+        }, {
+          text: 'Delete',
+          handler: () => {
+            this.resetTasks();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   minAndSec(i) {

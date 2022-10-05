@@ -8,8 +8,11 @@ import {ModalController} from '@ionic/angular';
 })
 export class AddNewTasksPage implements OnInit {
   taskName;
-  taskCategory;
   taskDueDate;
+  taskStartTime;
+  taskDurationHours;
+  taskDurationMinutes;
+
   addTaskObject;
 
   constructor(public modalCtrl: ModalController) {}
@@ -20,9 +23,21 @@ export class AddNewTasksPage implements OnInit {
     await this.modalCtrl.dismiss(this.addTaskObject);
   }
 
+  getStartTime() {
+    this.taskStartTime = this.taskDueDate.slice(-14,-9);
+    return this.taskStartTime;
+  }
+
+  getDuration() {
+    if (this.taskDurationHours[0] == '0') {
+      this.taskDurationHours = this.taskDurationHours[1];
+    }
+    return '' + this.taskDurationHours + 'hr : ' + this.taskDurationMinutes + ' min';
+  }
+
   addTask() {
     this.addTaskObject = ({
-      itemName:this.taskName,itemCategory:this.taskCategory,itemDueDate:this.taskDueDate
+      itemName:this.taskName,itemDueDate:this.taskDueDate,itemStartTime:this.getStartTime(),itemDuration:this.getDuration()
     });
     this.dismiss();
   }
