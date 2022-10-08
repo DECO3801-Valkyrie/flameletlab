@@ -25,6 +25,16 @@
           Fullname is required
         </p>
       </ion-text>
+      <ion-item>
+        <ion-select name="occupation" [(ngModel)]="selectedOccupation" #occupation="ngModel"  placeholder="Occupation" required>
+          <ion-select-option *ngFor="let occupationType of occupationTypes"  [value]="occupationType.id">{{ occupationType.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger">
+        <p [hidden]="occupation.valid || submitted === false" class="ion-padding-start">
+          Your occupation is required
+        </p>
+      </ion-text>
         <ion-item>
           <ion-label position="stacked" color="primary">Email</ion-label>
           <ion-input [(ngModel)]="registrationDetails.email" name="fullName" type="text" #email="ngModel" required>
