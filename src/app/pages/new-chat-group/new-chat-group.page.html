@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/chat"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Chat Group</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 class="ion-text-center">Create a Group</h1>
+  <form #groupForm="ngForm" novalidate>
+    <ion-list lines="none">
+  <ion-item>
+    <ion-label position="stacked">Group Name</ion-label>
+    <ion-input name="group" [(ngModel)]="groupName"  #group="ngModel" placeholder="IT People..."></ion-input>
+  </ion-item>
+  <ion-text color="danger">
+    <p [hidden]="group.valid || submitted === false" class="ion-padding-start">
+      A group name is required
+    </p>
+  </ion-text>
+  <ion-item>
+    <ion-label position="stacked">Employment Sector</ion-label>
+    <ion-select name="occupation" [(ngModel)]="selectedOccupation" #occupation="ngModel"  placeholder="Occupation" required>
+      <ion-select-option *ngFor="let occupationType of occupationTypes"  [value]="occupationType.id">{{ occupationType.name }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-text color="danger">
+    <p [hidden]="occupation.valid || submitted === false" class="ion-padding-start">
+      What sector is group relevant to?
+    </p>
+  </ion-text>
+      <ion-item>
+        <ion-label position="stacked">Tags</ion-label>
+        <ngx-input-tag class="ion-no-margin" name="tags" [tagSuggestions]="tagSuggestions" [(ngModel)]="tags"></ngx-input-tag>
+
+        <ion-text class="ion-no-margin ion-no-padding" color="primary">
+          <p>Helps others find your group</p>
+        </ion-text>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
+<ion-footer class="ion-no-margin ion-no-padding">
+  <ion-button class="ion-no-margin" expand="full">CREATE <ion-icon slot="end" name="arrow-forward-outline"></ion-icon></ion-button>
+</ion-footer>
