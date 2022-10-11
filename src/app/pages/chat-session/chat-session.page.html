@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/chat"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Anonymous Group Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content class="ion-no-padding">
+  <ion-list class="ion-no-margin">
+    <ion-item-divider  sticky>
+      <ion-row style="width: 100%">
+        <ion-col class="ion-no-padding ion-no-margin" size="6">
+          <h2 class="ion-text-wrap" class="group-name">IT PEOPLE</h2>
+        </ion-col>
+        <ion-col class="ion-no-padding ion-no-margin" size="6">
+          <p class="members">200 PEOPLE JOINED</p>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <ion-item-divider sticky>
+      <p>#dogs #cats #chicken</p>
+    </ion-item-divider>
+  </ion-list>
+  <div class="chat-bubble-wrapper">
+    <ion-text color="primary"><h6>Me (Anonymous Lion)</h6></ion-text>
+    <div class="inline-container own">
+      <img class="inline-icon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+      <div class="own-bubble own">
+        The first rule of being a ninja is, 'Do no harm.'
+      </div>
+    </div><span class="own">08:55</span>
+  </div>
+  <div class="chat-bubble-wrapper">
+    <ion-text color="secondary"><h6>Anonymous Cheeter</h6></ion-text>
+    <div class="inline-container">
+      <img class="inline-icon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+      <div class="other-bubble other">
+        Knowing when to leave requires training.
+      </div>
+    </div>
+  </div><span class="other">10:13</span>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-input #userMessageText type="text" placeholder="Message..."></ion-input>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

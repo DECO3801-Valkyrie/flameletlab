@@ -15,7 +15,7 @@ import {NgxInputTagModule} from '@ngx-lite/input-tag';
     IonicModule,
     NewChatGroupPageRoutingModule,
     NgxInputTagModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [NewChatGroupPage]
 })
