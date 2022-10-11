@@ -30,8 +30,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tab2/tab2.module').then( m => m.Tab2PageModule)
   },
   {
-    path: 'tab3',
-    loadChildren: () => import('./pages/tab3/tab3.module').then( m => m.Tab3PageModule)
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatPageModule)
   },
   {
     path: 'add-new-tasks',
@@ -48,6 +48,14 @@ const routes: Routes = [
   {
     path: 'workplace-reviews/:placeId',
     loadChildren: () => import('./pages/workplace-reviews/workplace-reviews.module').then( m => m.WorkplaceReviewsPageModule)
+  },
+  {
+    path: 'new-chat-group',
+    loadChildren: () => import('./pages/new-chat-group/new-chat-group.module').then( m => m.NewChatGroupPageModule)
+  },
+  {
+    path: 'chat-session',
+    loadChildren: () => import('./pages/chat-session/chat-session.module').then( m => m.ChatSessionPageModule)
   }
 
 ];
