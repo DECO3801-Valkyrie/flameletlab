@@ -49,7 +49,7 @@
       <ion-title size="large">CHAT</ion-title>
     </ion-toolbar>
     <ion-toolbar>
-      <ion-searchbar [(ngModel)]="queryText" (ionChange)="updateChatList()" placeholder="Search"></ion-searchbar>
+      <ion-searchbar [(ngModel)]="queryText" (ionChange)="filterOnSearch()" placeholder="Search"></ion-searchbar>
     </ion-toolbar>
   </ion-header>
 
@@ -88,19 +88,19 @@
     No Chats
   </ion-list-header>
 
-  <ion-card >
+  <ion-card *ngFor="let groupChat of groups">
     <ion-card-header>
-      <ion-card-subtitle>INFORMATION TECHNOLOGY</ion-card-subtitle>
-      <ion-card-title>IT PEOPLE</ion-card-title>
+      <ion-card-subtitle>{{ groupChat.occupationType }}</ion-card-subtitle>
+      <ion-card-title>{{ groupChat.name }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-wrap">
-      #dogs #cats
+      {{ formatTags(groupChat.tags) }}
     </ion-card-content>
     <ion-footer>
       <ion-row>
         <ion-col class="ion-text-center ion-justify-content-center">
-          <ion-button color="primary"  shape="round" size="small" fill="outline">
-            <ion-icon slot="start" name="chatbox-outline"></ion-icon>
+          <ion-button [routerLink]="['/chat-session/' + groupChat.id]" color="primary"  shape="round" size="small" fill="outline">
+            <ion-icon  slot="start" name="chatbox-outline"></ion-icon>
             Chat
           </ion-button>
         </ion-col>
@@ -108,24 +108,6 @@
           <ion-button color="secondary" shape="round" size="small" fill="outline">
             <ion-icon slot="start" name="exit-outline"></ion-icon>
             Leave</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-footer>
-  </ion-card>
-  <ion-card >
-    <ion-card-header>
-      <ion-card-subtitle>HOSPITALITY</ion-card-subtitle>
-      <ion-card-title>IS IT ONLY ME</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="ion-text-wrap">
-      #bbq #nightlife
-    </ion-card-content>
-    <ion-footer>
-      <ion-row>
-        <ion-col size="3" offset="8" class="ion-text-center ion-justify-content-center">
-          <ion-button color="secondary" shape="round" size="small" fill="outline">
-            <ion-icon slot="start" name="add-outline"></ion-icon>
-            Join</ion-button>
         </ion-col>
       </ion-row>
     </ion-footer>
