@@ -90,6 +90,12 @@ export class ChatPage {
     return tags.map(t => `#${t}`).join(' ');
   }
 
-
+  onJoin(groupId) {
+    this.chatService.join(groupId).subscribe({
+      next: (resp) => {
+        this.router.navigateByUrl(`/chat-session/${groupId}`);
+      }
+    });
+  }
 
 }

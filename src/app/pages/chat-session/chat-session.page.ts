@@ -1,13 +1,13 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {SERVER_API_URL} from '../../app.constants';
 import {IChatMessages} from '../../model/group-chat-messages';
 import {IMessage} from '../../model/message';
 import {ChatService} from '../../providers/chat.service';
-import {ActivatedRoute} from '@angular/router';
-import {AccountService} from "../../providers/core/auth/account.service";
-import {IAccount} from "../../model/account";
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from '../../providers/core/auth/account.service';
+import {IAccount} from '../../model/account';
 
 
 @Component({
@@ -23,7 +23,12 @@ export class ChatSessionPage {
   serverBaseUrl = SERVER_API_URL;
   groupChatMessages: IChatMessages;
   oldStompSubscription = null;
-  constructor(public chatService: ChatService, public accountService: AccountService, public route: ActivatedRoute) { }
+  @ViewChild('content', {static: false}) content: any;
+
+  constructor(public chatService: ChatService,
+              public router: Router,
+              public accountService: AccountService,
+              public route: ActivatedRoute) { }
 
   ionViewDidEnter() {
     this.load();
@@ -60,11 +65,14 @@ export class ChatSessionPage {
 
   onMessageReceived(message: IMessage) {
     this.groupChatMessages.messages = [...this.groupChatMessages.messages, message];
+    this.content.scrollToBottom(300);
   }
 
   onSendMessage() {
    this.stompClient.send(`/app/message/${this.groupChatMessages.groupChat.id}`, {},
      JSON.stringify({message: this.userMessage, userId: this.account.id}));
+    this.userMessage = ''; // clear text input
+    this.content.scrollToBottom(300);
   }
 
   formatTags(tags) {
@@ -73,5 +81,13 @@ export class ChatSessionPage {
     }
 
     return '';
+  }
+
+  isByMe(senderId) {
+    if (this.account) {
+      return this.account.id === senderId;
+    }
+
+    return false;
   }
 }

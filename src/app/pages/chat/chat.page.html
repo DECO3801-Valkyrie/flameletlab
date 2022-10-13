@@ -104,10 +104,15 @@
             Chat
           </ion-button>
         </ion-col>
-        <ion-col class="ion-text-center ion-justify-content-center">
+        <ion-col *ngIf="segment === 'joined'" class="ion-text-center ion-justify-content-center">
           <ion-button color="secondary" shape="round" size="small" fill="outline">
             <ion-icon slot="start" name="exit-outline"></ion-icon>
             Leave</ion-button>
+        </ion-col>
+        <ion-col *ngIf="segment !== 'joined'" class="ion-text-center ion-justify-content-center">
+          <ion-button (click)="onJoin(groupChat.id)" color="secondary" shape="round" size="small" fill="outline">
+            <ion-icon slot="start" name="add-outline"></ion-icon>
+            Join</ion-button>
         </ion-col>
       </ion-row>
     </ion-footer>

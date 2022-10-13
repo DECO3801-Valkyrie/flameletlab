@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {SERVER_API_URL} from '../app.constants';
 import {INewGroupRequest} from '../model/new-group-request';
 import {IGroupChat} from '../model/group-chat';
-import {IChatMessages} from "../model/group-chat-messages";
+import {IChatMessages} from '../model/group-chat-messages';
 
 @Injectable({ providedIn: 'root' })
 export class ChatService {
@@ -12,6 +12,10 @@ export class ChatService {
 
   createNewGroup(group: INewGroupRequest): Observable<HttpResponse<any>> {
     return this.http.post(SERVER_API_URL + 'api/group-chat', group, {observe: 'response'});
+  }
+
+  join(groupId: number): Observable<HttpResponse<any>> {
+    return this.http.post(SERVER_API_URL + `api/group-chat/${groupId}/join`, {}, {observe: 'response'});
   }
 
   getGroupChats(options: any) {
