@@ -13,6 +13,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {LocalStorageService, NgxWebstorageModule} from 'ngx-webstorage';
 import {StarRatingModule} from 'angular-star-rating';
 import {FormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,8 @@ import {FormsModule} from '@angular/forms';
     StarRatingModule.forRoot(),
     AppRoutingModule,
     FlameLetLabCoreModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
