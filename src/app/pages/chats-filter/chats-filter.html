@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button *ngIf="ios" (click)="dismiss()">Cancel</ion-button>
-      <ion-button *ngIf="!ios" (click)="selectAll(false)">Reset</ion-button>
+      <ion-button *ngIf="!ios" (click)="reset()">Reset</ion-button>
     </ion-buttons>
 
     <ion-title>
@@ -31,7 +31,7 @@
 <ion-footer translucent="true">
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button (click)="selectAll(false)">Reset</ion-button>
+      <ion-button (click)="reset()">Reset</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
