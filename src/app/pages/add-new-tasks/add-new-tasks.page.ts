@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
+import {ITodoRequest} from "../../model/todo-request";
+import {TodoService} from "../../providers/todo.service";
 
 @Component({
   selector: 'app-add-new-tasks',

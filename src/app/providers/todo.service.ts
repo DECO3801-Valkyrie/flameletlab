@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ITodoRequest} from '../../model/todo-request';
-import {ITodo} from '../../model/todo';
-import {SERVER_API_URL} from '../../app.constants';
+import {ITodoRequest} from '../model/todo-request';
+import {ITodo} from '../model/todo';
+import {SERVER_API_URL} from '../app.constants';
 
 export type EntityResponseType = HttpResponse<ITodo>;
 export type EntityArrayResponseType = HttpResponse<ITodo[]>;
@@ -18,6 +18,14 @@ export class TodoService {
 
   getAll(): Observable<any> {
     return this.http.get<any>(SERVER_API_URL + `api/todos/`, { observe: 'response' });
+  }
+
+  toggleTodo(id: number): Observable<HttpResponse<any>>  {
+    return this.http.put(SERVER_API_URL + `api/todo/`, { id }, { observe: 'response' });
+  }
+
+  deleteAll(): Observable<any> {
+    return this.http.delete(SERVER_API_URL + `api/todos/`,{ observe: 'response' });
   }
 
 }
