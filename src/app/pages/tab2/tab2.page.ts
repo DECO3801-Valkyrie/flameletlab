@@ -1,8 +1,36 @@
-import {Component} from '@angular/core';
+import {Component, Type} from '@angular/core';
 import {AlertController, ModalController} from '@ionic/angular';
 import {AddNewTasksPage} from '../add-new-tasks/add-new-tasks.page';
 import {PrincipalService} from '../../providers/core/auth/principal.service';
 import {WhiteNoiseService} from '../../providers/white-noise.service';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {FlameletService} from '../../providers/flamelet.service';
+
+
+@Component({
+  selector: 'modal-flamelet',
+  template: `
+  <div class="modal-header">
+    <h4 class="modal-title ion-text-center" id="modal-title">Your companion</h4>
+    <button type="button" class="btn-close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+   <img alt="Flamelet" [src]="flameletService.getFlameLetImage()" />
+  </div>
+ <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('Ok click')">Ok</button>
+  </div>-->
+  `
+})
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+export class NgbdModalConfirm {
+  constructor(public modal: NgbActiveModal, public flameletService: FlameletService) {}
+}
+
+const MODALS: {[name: string]: Type<any>} = {
+  focusFirst: NgbdModalConfirm,
+};
 
 @Component({
   selector: 'app-tab2',
@@ -28,6 +56,9 @@ export class Tab2Page {
   constructor(public modalCtrl: ModalController,
               public principal: PrincipalService,
               public whiteNoiseService: WhiteNoiseService,
+              public modal: NgbActiveModal,
+              private modalService: NgbModal,
+              private flameletService: FlameletService,
               private alertController: AlertController) {
     principal.identity(true).then(account => {
       this.fullName = account.fullName.split(' ')[0];
@@ -74,7 +105,7 @@ export class Tab2Page {
 
   areNoTasksAdded() {
     this.clearFlag = this.todoList === [];
-    return this.clearFlag
+    return this.clearFlag;
   }
 
   resetTasks() {
@@ -106,10 +137,16 @@ export class Tab2Page {
   }
 
   minAndSec(i) {
-    let secs = this.whiteNoises[i].length;
-    let quotient = Math.floor(secs/60);
-    let remainder = secs % 60;
+    const secs = this.whiteNoises[i].length;
+    const quotient = Math.floor(secs/60);
+    const remainder = secs % 60;
 
-    return "" + quotient + "m " + remainder + "s";
+    return '' + quotient + 'm ' + remainder + 's';
+  }
+
+
+  open(name: string) {
+    this.flameletService.setFlameLetImage('https://i.giphy.com/media/eHjrC6X9zDIMI0alnP/giphy.webp');
+    this.modalService.open(MODALS[name]);
   }
 }
