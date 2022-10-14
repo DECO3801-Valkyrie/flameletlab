@@ -5,17 +5,31 @@ import {PrincipalService} from '../../providers/core/auth/principal.service';
 import {WhiteNoiseService} from '../../providers/white-noise.service';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FlameletService} from '../../providers/flamelet.service';
-
+import {TodoService} from '../../providers/todo.service';
 
 @Component({
   selector: 'modal-flamelet',
+  styles: [`
+  .flamelet-with-message {
+  display: flex;
+  height: 15rem;
+  margin: auto auto;
+}
+
+.flamelet-without-message {
+  display: flex;
+  height: 10rem;
+  margin: auto auto;
+}
+`],
   template: `
   <div class="modal-header">
     <h4 class="modal-title ion-text-center" id="modal-title">Your companion</h4>
     <button type="button" class="btn-close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-   <img alt="Flamelet" [src]="flameletService.getFlameLetImage()" />
+    <p *ngIf="flameletService.getFlameLetMessage !== ''"><strong>{{ flameletService.getFlameLetMessage() }}</strong></p>
+      <img [ngClass]="{'flamelet-with-message': flameletService.getFlameLetMessage() !== '', 'flamelet-without-message': flameletService.getFlameLetMessage() === ''}" alt="Flamelet" [src]="flameletService.getFlameLetImage()" />
   </div>
  <!-- <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
@@ -59,12 +73,20 @@ export class Tab2Page {
               public modal: NgbActiveModal,
               private modalService: NgbModal,
               private flameletService: FlameletService,
-              private alertController: AlertController) {
+              private alertController: AlertController,
+              public todoService: TodoService) {
     principal.identity(true).then(account => {
       this.fullName = account.fullName.split(' ')[0];
     });
   }
 
+  loadTodos() {
+    this.todoService.getAll().subscribe({
+      next: (resp) => {
+        this.todoList = resp.body.todos;
+      }
+    });
+  }
   ionViewDidEnter() {
     this.whiteNoiseService.getAll().subscribe(resp => {
       this.whiteNoises = resp.body.map(w => ({...w, isPlaying: false}));
@@ -72,6 +94,18 @@ export class Tab2Page {
     }, error => {
       console.log(error);
     });
+
+    this.flameletService.getConcerned().subscribe({
+      next: (resp) => {
+        if (resp.body.concerned) {
+          this.flameletService.setFlameLetImage('CONCERNED');
+          this.flameletService.setFlameLetMessage('You haven\'t done your tasks recently? it\'s okay to take a break');
+          this.open('focusFirst');
+        }
+      }
+    });
+
+    this.loadTodos();
     }
 
     onWhiteNoiseRecommendationClicked(audioPath, index) {
@@ -94,11 +128,18 @@ export class Tab2Page {
       component: AddNewTasksPage
     });
     modal.onDidDismiss().then(newTaskObject => {
-      console.log(newTaskObject.data);
-      this.todoList.push(newTaskObject.data);
-      if (newTaskObject.data == undefined) {
-        this.todoList.pop();
-      }
+      // console.log(newTaskObject.data);
+      // this.todoList.push(newTaskObject.data);
+      // if (newTaskObject.data == undefined) {
+      //   this.todoList.pop();
+      // }
+     setTimeout(() => {
+       this.todoService.getAll().subscribe({
+         next: (resp) => {
+           this.todoList = resp.body.todos;
+         }
+       });
+     }, 1500);
     });
     return await modal.present();
   }
@@ -128,6 +169,7 @@ export class Tab2Page {
           text: 'Delete',
           handler: () => {
             this.resetTasks();
+            this.onClear();
           }
         }
       ]
@@ -146,7 +188,32 @@ export class Tab2Page {
 
 
   open(name: string) {
-    this.flameletService.setFlameLetImage('https://i.giphy.com/media/eHjrC6X9zDIMI0alnP/giphy.webp');
     this.modalService.open(MODALS[name]);
   }
+
+  toggleDone(id: number, oldValue) {
+    this.todoService.toggleTodo(id).subscribe({
+      next: (resp) => {
+        this.loadTodos();
+        this.flameletService.getTodoMood(id).subscribe({
+          next: (res) => {
+            if (!oldValue) {
+              this.flameletService.setFlameLetMessage('Yay! Well done!');
+              this.flameletService.setFlameLetImage(res.body.mood);
+              this.open('focusFirst');
+            }
+
+          }
+        });
+      }
+    });
+  }
+
+  onClear() {
+    this.todoService.deleteAll().subscribe({
+      next: (resp) => {
+      }
+    })
+  }
+
 }
