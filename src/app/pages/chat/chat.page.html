@@ -43,7 +43,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true">
+<ion-content fullscreen="true" #content>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">CHAT</ion-title>
@@ -99,7 +99,7 @@
     <ion-footer>
       <ion-row>
         <ion-col class="ion-text-center ion-justify-content-center">
-          <ion-button [routerLink]="['/chat-session/' + groupChat.id]" color="primary"  shape="round" size="small" fill="outline">
+          <ion-button *ngIf="segment === 'joined'"  [routerLink]="['/chat-session/' + groupChat.id]" color="primary"  shape="round" size="small" fill="outline">
             <ion-icon  slot="start" name="chatbox-outline"></ion-icon>
             Chat
           </ion-button>
@@ -117,5 +117,7 @@
       </ion-row>
     </ion-footer>
   </ion-card>
-
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="onRefresh()"><ion-icon name="refresh-outline"></ion-icon></ion-fab-button>
+  </ion-fab>
 </ion-content>

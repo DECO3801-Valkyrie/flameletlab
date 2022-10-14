@@ -21,6 +21,8 @@ export class UserWorkplaceRatingPage implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.reviewAndRating.placeId = params.placeId;
+      this.reviewAndRating.review = '';
+      this.reviewAndRating.rating = 0;
       this.googlePlacesApiService.getPlaceByPlaceId(params.placeId).subscribe(
         res => {
           this.reviewAndRating.placeName = res.body.result.name;

@@ -26,7 +26,7 @@
   </ion-list>
   <ng-container *ngFor="let message of groupChatMessages?.messages">
     <div class="chat-bubble-wrapper" *ngIf="isByMe(message.senderId)">
-      <ion-text color="primary"><h6>Me ({{ message.anonymousUserName}})</h6></ion-text>
+      <ion-text color="primary"><h6 style="text-align: right">Me ({{ message.anonymousUserName}})</h6></ion-text>
       <div class="inline-container own">
         <img class="inline-icon" [src]="serverBaseUrl + 'animals/' + message.anonymousImage">
         <div class="own-bubble own">

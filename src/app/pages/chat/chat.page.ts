@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {
   AlertController,
   Config,
@@ -16,7 +16,7 @@ import {ChatService} from '../../providers/chat.service';
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
 })
-export class ChatPage {
+export class ChatPage  {
 
   ios: boolean;
   dayIndex = 0;
@@ -29,6 +29,7 @@ export class ChatPage {
   confDate: string;
   showSearchbar: boolean;
   selectedOccupation = -1;
+  @ViewChild('content', {static: false}) content: any;
 
   constructor(
     public alertCtrl: AlertController,
@@ -60,6 +61,7 @@ export class ChatPage {
       this.updateChatList();
     }
   }
+
 
   updateChatList() {
     this.options = {query: this.queryText};
@@ -96,6 +98,11 @@ export class ChatPage {
         this.router.navigateByUrl(`/chat-session/${groupId}`);
       }
     });
+  }
+
+  onRefresh() {
+    this.updateChatList();
+    this.content.scrollToBottom(300);
   }
 
 }

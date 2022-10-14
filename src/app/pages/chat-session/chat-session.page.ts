@@ -23,12 +23,14 @@ export class ChatSessionPage {
   serverBaseUrl = SERVER_API_URL;
   groupChatMessages: IChatMessages;
   oldStompSubscription = null;
+
   @ViewChild('content', {static: false}) content: any;
 
   constructor(public chatService: ChatService,
               public router: Router,
               public accountService: AccountService,
-              public route: ActivatedRoute) { }
+              public route: ActivatedRoute) {
+  }
 
   ionViewDidEnter() {
     this.load();
