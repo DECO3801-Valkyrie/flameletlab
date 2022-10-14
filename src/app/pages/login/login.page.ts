@@ -30,7 +30,7 @@ export class LoginPage {
         })
         .catch(() => {
           this.loginError = true;
-          console.log('Error thrown!!!')
+          console.log('Error thrown!!!');
         });
     }
   }
