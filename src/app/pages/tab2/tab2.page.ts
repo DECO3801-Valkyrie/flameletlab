@@ -28,7 +28,7 @@ import {TodoService} from '../../providers/todo.service';
     <button type="button" class="btn-close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <p *ngIf="flameletService.getFlameLetMessage !== ''"><strong>{{ flameletService.getFlameLetMessage() }}</strong></p>
+    <p *ngIf="flameletService.getFlameLetMessage() !== ''"><strong>{{ flameletService.getFlameLetMessage() }}</strong></p>
       <img [ngClass]="{'flamelet-with-message': flameletService.getFlameLetMessage() !== '', 'flamelet-without-message': flameletService.getFlameLetMessage() === ''}" alt="Flamelet" [src]="flameletService.getFlameLetImage()" />
   </div>
  <!-- <div class="modal-footer">
