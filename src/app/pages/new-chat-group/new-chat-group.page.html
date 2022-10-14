@@ -13,7 +13,7 @@
     <ion-list lines="none">
   <ion-item>
     <ion-label position="stacked">Group Name</ion-label>
-    <ion-input name="group" [(ngModel)]="groupName"  #group="ngModel" placeholder="IT People..."></ion-input>
+    <ion-input name="group" [(ngModel)]="newGroup.name"  #group="ngModel" placeholder="IT People..."></ion-input>
   </ion-item>
   <ion-text color="danger">
     <p [hidden]="group.valid || submitted === false" class="ion-padding-start">
@@ -22,7 +22,7 @@
   </ion-text>
   <ion-item>
     <ion-label position="stacked">Employment Sector</ion-label>
-    <ion-select name="occupation" [(ngModel)]="selectedOccupation" #occupation="ngModel"  placeholder="Occupation" required>
+    <ion-select name="occupation" [(ngModel)]="newGroup.occupationTypeId" #occupation="ngModel"  placeholder="Occupation" required>
       <ion-select-option *ngFor="let occupationType of occupationTypes"  [value]="occupationType.id">{{ occupationType.name }}</ion-select-option>
     </ion-select>
   </ion-item>
@@ -33,7 +33,7 @@
   </ion-text>
       <ion-item>
         <ion-label position="stacked">Tags</ion-label>
-        <ngx-input-tag class="ion-no-margin" name="tags" [tagSuggestions]="tagSuggestions" [(ngModel)]="tags"></ngx-input-tag>
+        <ngx-input-tag class="ion-no-margin" name="tags" [tagSuggestions]="tagSuggestions" [(ngModel)]="newGroup.tags"></ngx-input-tag>
 
         <ion-text class="ion-no-margin ion-no-padding" color="primary">
           <p>Helps others find your group</p>
@@ -43,5 +43,5 @@
   </form>
 </ion-content>
 <ion-footer class="ion-no-margin ion-no-padding">
-  <ion-button class="ion-no-margin" expand="full">CREATE <ion-icon slot="end" name="arrow-forward-outline"></ion-icon></ion-button>
+  <ion-button class="ion-no-margin" expand="full" (click)="onCreate()">CREATE <ion-icon slot="end" name="arrow-forward-outline"></ion-icon></ion-button>
 </ion-footer>

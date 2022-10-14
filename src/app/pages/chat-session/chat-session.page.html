@@ -13,41 +13,45 @@
     <ion-item-divider  sticky>
       <ion-row style="width: 100%">
         <ion-col class="ion-no-padding ion-no-margin" size="6">
-          <h2 class="ion-text-wrap" class="group-name">IT PEOPLE</h2>
+          <h2 class="ion-text-wrap group-name">{{ groupChatMessages?.groupChat?.name }}</h2>
         </ion-col>
         <ion-col class="ion-no-padding ion-no-margin" size="6">
-          <p class="members">200 PEOPLE JOINED</p>
+          <p class="members">{{ groupChatMessages?.groupChat?.totalUsers}} PEOPLE JOINED</p>
         </ion-col>
       </ion-row>
     </ion-item-divider>
     <ion-item-divider sticky>
-      <p>#dogs #cats #chicken</p>
+      <p>{{ formatTags(groupChatMessages?.groupChat?.tags)}}</p>
     </ion-item-divider>
   </ion-list>
-  <div class="chat-bubble-wrapper">
-    <ion-text color="primary"><h6>Me (Anonymous Lion)</h6></ion-text>
-    <div class="inline-container own">
-      <img class="inline-icon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
-      <div class="own-bubble own">
-        The first rule of being a ninja is, 'Do no harm.'
-      </div>
-    </div><span class="own">08:55</span>
-  </div>
-  <div class="chat-bubble-wrapper">
-    <ion-text color="secondary"><h6>Anonymous Cheeter</h6></ion-text>
-    <div class="inline-container">
-      <img class="inline-icon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
-      <div class="other-bubble other">
-        Knowing when to leave requires training.
-      </div>
+  <ng-container *ngFor="let message of groupChatMessages?.messages">
+    <div class="chat-bubble-wrapper" *ngIf="isByMe(message.senderId)">
+      <ion-text color="primary"><h6 style="text-align: right">Me ({{ message.anonymousUserName}})</h6></ion-text>
+      <div class="inline-container own">
+        <img class="inline-icon" [src]="serverBaseUrl + 'animals/' + message.anonymousImage">
+        <div class="own-bubble own">
+          {{ message.message }}
+        </div>
+      </div><span class="own">{{ message.sent | date:'short'}}</span>
     </div>
-  </div><span class="other">10:13</span>
+    <div class="chat-bubble-wrapper" *ngIf="!isByMe(message.senderId)">
+      <ion-text color="secondary"><h6>{{ message.anonymousUserName }}</h6></ion-text>
+      <div class="inline-container">
+        <img class="inline-icon" [src]="serverBaseUrl + 'animals/' + message.anonymousImage">
+        <div class="other-bubble other">
+          {{ message.message }}
+        </div>
+      </div><span class="other">{{ message.sent | date: 'short'}}</span>
+    </div>
+  </ng-container>
+
+
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-input #userMessageText type="text" placeholder="Message..."></ion-input>
+    <ion-input #userMessageText type="text" placeholder="Message..." [(ngModel)]="userMessage"></ion-input>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="onSendMessage()">
         <ion-icon slot="icon-only" name="send"></ion-icon>
       </ion-button>
     </ion-buttons>
