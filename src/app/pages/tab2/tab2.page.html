@@ -36,7 +36,7 @@
     <ion-slides [options]="slideOpt">
       <ion-slide *ngFor="let whiteNoise of whiteNoises;index as i" >
         <ion-card class="white-noise-recommendation-card">
-          <img alt="white noise image" class="white-noise-images" src="../../assets/images/{{whiteNoise.title}}.svg"/>
+          <img alt="white noise image" class="white-noise-images" src="/assets/images/{{whiteNoise.title}}.svg"/>
           <ion-row>
             <ion-col class="ion-align-items-start ion-no-margin ion-no-padding" size="8">
               <ion-card-header class="white-noise-header">
@@ -67,14 +67,14 @@
     <!-- the list -->
     <ion-card class="timeline-event" *ngFor="let item of todoList">
       <div class="timeline-point-container">
-        <ion-checkbox slot="start" class="timeline-point"></ion-checkbox>
+        <ion-checkbox [checked]="item.done" (click)="toggleDone(item.id, item.done)" slot="start" class="timeline-point"></ion-checkbox>
       </div>
       <ion-card-header class="task-header">
         <ion-card-title>
-          {{item.itemName}}
+          {{item.name}}
         </ion-card-title>
         <ion-card-subtitle class="timeline-date">
-          {{item.itemDueDate | date:'mediumDate'}}
+          {{item.estimatedStart | date:'mediumDate'}}
         </ion-card-subtitle>
         <div class="time-duration-box">
           <span class="time">Start: {{item.itemStartTime}}</span>
@@ -82,11 +82,11 @@
         </div>
       </ion-card-header>
     </ion-card>
-    <ion-button class="clear-button" [hidden]="areNoTasksAdded()" (click)="confirmDeleteTask()">Clear</ion-button>
+    <ion-button class="clear-button" [disabled]="todoList.length === 0" [hidden]="areNoTasksAdded()" (click)="confirmDeleteTask()">Clear</ion-button>
   </ion-card>
 
   <!-- add a to do task -->
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addTask()">
       <ion-icon name="add-sharp"></ion-icon>
     </ion-fab-button>

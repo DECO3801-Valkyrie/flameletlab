@@ -26,7 +26,7 @@ export class LoginPage {
         .login(this.loginDetails)
         .then(() => {
           this.loginError = false;
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/tabs/tab2');
         })
         .catch(() => {
           this.loginError = true;
