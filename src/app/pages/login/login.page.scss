@@ -14,7 +14,6 @@
 }
 
 .rounded-input {
-
   padding-top: 5px;
   padding-left: 30px;
   padding-right: 30px;
@@ -24,10 +23,10 @@
   }
 
 .ion-button-align {
-  max-height: 35px;
+  --ion-font-family: AppFontBold;
   text-align: center;
-  padding-right: 100px;
-  padding-left: 100px;
+  padding-right: 28px;
+  padding-left: 28px;
 }
 
 .ion-padding-top {

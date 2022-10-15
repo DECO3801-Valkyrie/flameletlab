@@ -1,23 +1,13 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="background">
 
-<ion-content>
-
-  <div class="signup-logo">
-    <img src="assets/img/appicon.svg" alt="Ionic Logo">
+  <div class="register-img">
+    <img src="assets/img/register.png" alt="register img">
   </div>
 
   <form #registerForm="ngForm" novalidate>
     <ion-list lines="none">
-      <ion-item>
-        <ion-label position="stacked" color="primary">Full Name</ion-label>
-        <ion-input [(ngModel)]="registrationDetails.fullName" name="fullName" type="text" #fullName="ngModel" required>
+      <ion-item class="rounded-input">
+        <ion-input placeholder="Enter your full name" [(ngModel)]="registrationDetails.fullName" name="fullName" type="text" #fullName="ngModel" required>
         </ion-input>
       </ion-item>
       <ion-text color="danger">
@@ -25,7 +15,7 @@
           Fullname is required
         </p>
       </ion-text>
-      <ion-item>
+      <ion-item class="ion-align">
         <ion-select name="occupation" [(ngModel)]="selectedOccupation" #occupation="ngModel"  placeholder="Occupation" required>
           <ion-select-option *ngFor="let occupationType of occupationTypes"  [value]="occupationType.id">{{ occupationType.name }}</ion-select-option>
         </ion-select>
@@ -35,9 +25,8 @@
           Your occupation is required
         </p>
       </ion-text>
-        <ion-item>
-          <ion-label position="stacked" color="primary">Email</ion-label>
-          <ion-input [(ngModel)]="registrationDetails.email" name="fullName" type="text" #email="ngModel" required>
+        <ion-item class="rounded-input">
+          <ion-input placeholder="Enter your Email Address" [(ngModel)]="registrationDetails.email" name="fullName" type="text" #email="ngModel" required>
           </ion-input>
         </ion-item>
         <ion-text color="danger">
@@ -46,9 +35,8 @@
           </p>
         </ion-text>
 
-        <ion-item>
-        <ion-label position="stacked" color="primary">Password</ion-label>
-        <ion-input [(ngModel)]="registrationDetails.password" name="password" type="password" #password="ngModel" required>
+        <ion-item class="rounded-input">
+        <ion-input placeholder="Create a strong password" [(ngModel)]="registrationDetails.password" name="password" type="password" #password="ngModel" required>
         </ion-input>
       </ion-item>
       <ion-text color="danger">
@@ -59,7 +47,11 @@
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button (click)="onRegister(registerForm)" type="submit" expand="block">Create</ion-button>
+      <ion-button
+        class="ion-button-align" shape="round"
+        (click)="onRegister(registerForm)" type="submit" expand="block">
+        REGISTER
+      </ion-button>
     </div>
   </form>
 

@@ -6,10 +6,16 @@
   src: url("../assets/fonts/Roboto-Regular.ttf");
 }
 
+@font-face {
+  font-family: AppFontBold;
+  src: url("../assets/fonts/Roboto-Bold.ttf");
+}
+
+
 /** Ionic CSS Variables **/
 :root {
 
-  --ion-font-family: 'AppFont';
+  --ion-font-family: 'AppFont', 'AppFontBold';
 
   /** primary **/
   --ion-color-primary: #F59848;
