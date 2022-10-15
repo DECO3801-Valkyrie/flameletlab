@@ -56,6 +56,10 @@ const routes: Routes = [
   {
     path: 'chat-session/:groupId',
     loadChildren: () => import('./pages/chat-session/chat-session.module').then( m => m.ChatSessionPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   }
 
 ];

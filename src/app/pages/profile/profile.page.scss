@@ -1,0 +1,21 @@
+.profile-pic {
+  padding-top: 20px;
+  min-height: 200px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.profile-pic img {
+  max-width: 150px;
+}
+
+.circle {
+  object-fit:cover;
+  border-radius:50%;
+}
+
+.center {
+  display: block;
+  text-align: center;
+  font-weight: bolder;
+}
