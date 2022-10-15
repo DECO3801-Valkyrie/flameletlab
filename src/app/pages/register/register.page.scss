@@ -1,0 +1,32 @@
+.register-img {
+  padding-top: 180px;
+  min-height: 200px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.rounded-input {
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  --border-color: var(--ion-color-medium-shade);
+  --border-radius: 30px;
+  --border-width: 1px;
+}
+
+.ion-align {
+  text-indent: 30px;
+}
+
+.ion-button-align {
+
+  --ion-font-family: AppFontBold;
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+ion-content.background{
+  --background: url(../../../assets/background/registerBackground.png) 100% 100% no-repeat;
+}
+
