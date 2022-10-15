@@ -1,10 +1,18 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@font-face {
+  font-family: AppFont;
+  src: url("../assets/fonts/Roboto-Regular.ttf");
+}
+
 /** Ionic CSS Variables **/
 :root {
+
+  --ion-font-family: 'AppFont';
+
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #F59848;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
