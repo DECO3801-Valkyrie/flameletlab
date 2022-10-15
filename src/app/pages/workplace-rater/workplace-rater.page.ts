@@ -37,4 +37,8 @@ export class WorkplaceRaterPage implements OnInit {
       || w.location.toLowerCase().includes(this.queryText.toLowerCase()));
   }
 
+  onRefresh() {
+    this.load();
+  }
+
 }

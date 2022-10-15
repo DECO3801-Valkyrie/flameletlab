@@ -49,5 +49,7 @@
   <ion-list-header [hidden]="true">
     No reviews yet
   </ion-list-header>
-
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="onRefresh()"><ion-icon name="refresh-outline"></ion-icon></ion-fab-button>
+  </ion-fab>
 </ion-content>
