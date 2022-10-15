@@ -1,8 +1,6 @@
 import {environment} from '../environments/environment';
 
 export const SERVER_API_URL = `http://${environment.apiServer}:8080/`;
-export const GOOGLE_PLACES_API_KEY = 'AIzaSyCWfP_3D3jCTlXdMvHQa8Y_r0r_iov83Yc';
-export const DEFAULT_RADIUS = 3200000;
 
 export const FLAMELET_EMOITIONS = {
   "CONCERNED": 'https://media1.giphy.com/media/1GHF9lOZg5VNiU6K4z/giphy.gif?cid=790b7611f4d07ee8d33c11876b28d9ab5281043dfad193b1&rid=giphy.gif&ct=s',
