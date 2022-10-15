@@ -9,28 +9,18 @@
     <ion-searchbar></ion-searchbar>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
-    <ion-card (click)="checkoutArticle()">
-    <img alt="Article image" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    <ion-card-header>
-      <ion-card-subtitle>Article Tags</ion-card-subtitle>
-      <ion-card-title>Article Title</ion-card-title>
-    </ion-card-header>
-    </ion-card>
+
+  <ion-card *ngFor="let news of newsFeed" (click)="checkoutArticle(news)">
+  <img alt="Article image" src="{{ news.urlToImage }}" />
+  <ion-card-header>
+    <ion-card-subtitle>Article Tags: {{ news.tags }}</ion-card-subtitle>
+    <ion-card-title>Article Title: {{ news.title }}</ion-card-title>
+  </ion-card-header>
+  </ion-card>
 </ion-content>
 
-<!--<ion-content>
-  <ion-card *ngFor="let article of data?.articles" (click)="onGoToNewsSinglePage(article)">
-    &lt;!&ndash; <ion-img [src]="article.urlToImage"></ion-img> &ndash;&gt;
-
-    <ion-card-content>
-      <ion-card-title>{{article.title}}</ion-card-title>
-
-      <p>{{article.description}}</p>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-infinite-scroll (ionInfinite)="loadMoreNews($event)">
+<!--  <ion-infinite-scroll (ionInfinite)="loadMoreNews($event)">
     <ion-infinite-scroll-content loadingSpinner="bubble" loadingText="load news.."></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-</ion-content>-->
+  </ion-infinite-scroll>-->
