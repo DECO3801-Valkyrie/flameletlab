@@ -27,6 +27,10 @@
 }
 
 ion-content.background{
-  --background: url(../../../assets/background/registerBackground.png) 100% 100% no-repeat;
+  --background: url(../../../assets/background/registerBackground.png) no-repeat cover fixed center;
+  background: url('../../../assets/background/LoginBackground.png') no-repeat fixed center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
 }
 
