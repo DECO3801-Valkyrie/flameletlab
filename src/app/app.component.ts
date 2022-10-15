@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router";
+import {LoginService} from "./providers/core/auth/login.service";
 
 @Component({
   selector: 'app-root',
@@ -12,5 +14,10 @@ export class AppComponent {
 
   dark = true;
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor(private router: Router, private loginService: LoginService) {}
+
+  onLogOut() {
+    this.loginService.logout();
+    this.router.navigateByUrl('/login', {replaceUrl: true});
+  }
 }
