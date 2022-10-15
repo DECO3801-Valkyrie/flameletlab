@@ -1,51 +1,44 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+<ion-content class="background">
 
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
   <div class="login-logo">
-    <img src="../../../assets/img/appicon.svg" alt="Ionic logo">
+    <img src="../../../assets/img/logIn.png" alt="flamelet logo">
   </div>
+
+
   <form #loginForm="ngForm" novalidate>
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked" color="primary">Email</ion-label>
-        <ion-input [(ngModel)]="loginDetails.email" name="email" type="email" #email="ngModel" spellcheck="false" autocapitalize="off"
+    <ion-list >
+      <ion-item class="rounded-input">
+        <ion-input placeholder="Enter your Email" [(ngModel)]="loginDetails.email" name="email" type="email" #email="ngModel" spellcheck="false" autocapitalize="off"
                    required>
         </ion-input>
       </ion-item>
 
-      <ion-text color="danger">
+      <ion-text color="danger" class="ion-align">
         <p [hidden]="email.valid || submitted === false" class="ion-padding-start">
           Username is required
         </p>
       </ion-text>
 
-      <ion-item>
-        <ion-label position="stacked" color="primary">Password</ion-label>
-        <ion-input [(ngModel)]="loginDetails.password" name="password" type="password" #password="ngModel" required>
+      <ion-item class="rounded-input">
+        <ion-input placeholder="Enter your password" [(ngModel)]="loginDetails.password" name="password" type="password" #password="ngModel" required>
         </ion-input>
       </ion-item>
 
-      <ion-text color="danger">
+      <ion-text color="danger" class="ion-align">
         <p [hidden]="password.valid || submitted === false" class="ion-padding-start">
           Password is required
         </p>
       </ion-text>
     </ion-list>
 
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="onLogin(loginForm)" type="submit" expand="block">Login</ion-button>
+    <ion-row class="ion-padding-top">
+      <ion-col class="ion-button-align">
+        <ion-button shape="round" size="default"  (click)="onLogin(loginForm)" type="submit" expand="block">Login</ion-button>
       </ion-col>
-      <ion-col>
-        <ion-button (click)="onRegister()" color="light" expand="block">Register</ion-button>
+    </ion-row>
+    <ion-row class="ion-padding-top">
+      <ion-col class="ion-button-align">
+        <ion-button fill="clear" (click)="onRegister()">Register here</ion-button>
       </ion-col>
     </ion-row>
   </form>
