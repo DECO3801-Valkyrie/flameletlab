@@ -63,15 +63,13 @@ const routes: Routes = [
   },
   {
     path: 'chat-session/:groupId',
-    loadChildren: () => import('./pages/chat-session/chat-session.module').then( m => m.ChatSessionPageModule)
+    loadChildren: () => import('./pages/chat-session/chat-session.module').then( m => m.ChatSessionPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'news',
-    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule)
-  },
-  {
-    path: 'news-article',
-    loadChildren: () => import('./pages/news-article/news-article.module').then( m => m.NewsArticlePageModule)
+    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'profile',

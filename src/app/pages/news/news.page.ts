@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {NewsFeedService} from '../../providers/news-feed.service';
 import {INewsArticle} from '../../model/news-article';
@@ -10,7 +10,9 @@ import {INewsArticle} from '../../model/news-article';
 })
 export class NewsPage implements OnInit {
 
-  newsFeed?: INewsArticle[];
+  newsFeed?: Array<INewsArticle>;
+  originalFeed: Array<INewsArticle>;
+  loading = false;
 
   constructor(
     private router: Router,
@@ -18,15 +20,28 @@ export class NewsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.newsService.getNewsFeed().subscribe( {
       next: (resp) => {
-        this.newsFeed = resp.body.map(n => ({...n}));
+        this.newsFeed = resp.body.map((n, i) => ({id: i,...n}));
+        this.originalFeed = [...this.newsFeed];
+        this.newsService.setCache(this.newsFeed);
+        this.loading = false;
       }
     });
   }
 
   checkoutArticle(article?: INewsArticle) {
     this.newsService.article = article;
-    this.router.navigate(['/news-article']);
+    window.open(article.url, '_blank').focus();
+  }
+
+  onSearch(event) {
+    if (event.target.value === '') {
+      this.newsFeed = [...this.originalFeed];
+      return;
+    }
+
+    this.newsFeed = this.originalFeed.filter(a => a.title.includes(event.target.value));
   }
 }
