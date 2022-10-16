@@ -23,35 +23,43 @@ const routes: Routes = [
   },
   {
     path: 'workplace-rater',
-    loadChildren: () => import('./pages/workplace-rater/workplace-rater.module').then(m => m.WorkplaceRaterPageModule)
+    loadChildren: () => import('./pages/workplace-rater/workplace-rater.module').then(m => m.WorkplaceRaterPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'tab2',
-    loadChildren: () => import('./pages/tab2/tab2.module').then( m => m.Tab2PageModule)
+    loadChildren: () => import('./pages/tab2/tab2.module').then( m => m.Tab2PageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'chat',
-    loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatPageModule)
+    loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'add-new-tasks',
-    loadChildren: () => import('./pages/add-new-tasks/add-new-tasks.module').then( m => m.AddNewTasksPageModule)
+    loadChildren: () => import('./pages/add-new-tasks/add-new-tasks.module').then( m => m.AddNewTasksPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'new-workplace-review',
-    loadChildren: () => import('./pages/new-workplace-review/new-workplace-review.module').then( m => m.NewWorkplaceReviewPageModule)
+    loadChildren: () => import('./pages/new-workplace-review/new-workplace-review.module').then( m => m.NewWorkplaceReviewPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'user-workplace-rating/:placeId',
-    loadChildren: () => import('./pages/user-workplace-rating/user-workplace-rating.module').then( m => m.UserWorkplaceRatingPageModule)
+    loadChildren: () => import('./pages/user-workplace-rating/user-workplace-rating.module').then( m => m.UserWorkplaceRatingPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'workplace-reviews/:placeId',
-    loadChildren: () => import('./pages/workplace-reviews/workplace-reviews.module').then( m => m.WorkplaceReviewsPageModule)
+    loadChildren: () => import('./pages/workplace-reviews/workplace-reviews.module').then( m => m.WorkplaceReviewsPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'new-chat-group',
-    loadChildren: () => import('./pages/new-chat-group/new-chat-group.module').then( m => m.NewChatGroupPageModule)
+    loadChildren: () => import('./pages/new-chat-group/new-chat-group.module').then( m => m.NewChatGroupPageModule),
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'chat-session/:groupId',
@@ -64,6 +72,11 @@ const routes: Routes = [
   {
     path: 'news-article',
     loadChildren: () => import('./pages/news-article/news-article.module').then( m => m.NewsArticlePageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [UserRouteAccessService]
   }
 
 ];

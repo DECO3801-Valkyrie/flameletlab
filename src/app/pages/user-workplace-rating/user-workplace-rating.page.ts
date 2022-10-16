@@ -42,7 +42,7 @@ export class UserWorkplaceRatingPage implements OnInit {
   onSubmit() {
     this.workplaceRatingService.createNewRating(this.reviewAndRating).subscribe(
       () => {
-        this.router.navigateByUrl('/workplace-reviews/' + this.reviewAndRating.placeId);
+        this.router.navigateByUrl('/workplace-reviews/' + this.reviewAndRating.placeId, {skipLocationChange: true, replaceUrl: true});
       },
       response => {
         // handle error

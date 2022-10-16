@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
+import {ITodoRequest} from "../../model/todo-request";
+import {TodoService} from "../../providers/todo.service";
 
 @Component({
   selector: 'app-add-new-tasks',
@@ -14,13 +16,28 @@ export class AddNewTasksPage implements OnInit {
   taskDurationMinutes;
 
   addTaskObject;
+  newTodo: ITodoRequest = { name: '', estimatedTime: '', estimatedStart: '' };
 
-  constructor(public modalCtrl: ModalController) {}
+  constructor(public modalCtrl: ModalController, public todoService: TodoService) {}
 
   ngOnInit() {}
 
   async dismiss() {
     await this.modalCtrl.dismiss(this.addTaskObject);
+  }
+
+   addTask() {
+    this.newTodo.name = this.taskName;
+    this.newTodo.estimatedStart = this.taskDueDate;
+    this.newTodo.estimatedTime = 'PT10S';
+    this.todoService.createTodo(this.newTodo).subscribe(
+      {
+        next: (resp) => {
+          // to do something with response
+        }
+      }
+    );
+    this.dismiss();
   }
 
   getStartTime() {
@@ -35,10 +52,4 @@ export class AddNewTasksPage implements OnInit {
     return '' + this.taskDurationHours + 'hr : ' + this.taskDurationMinutes + ' min';
   }
 
-  addTask() {
-    this.addTaskObject = ({
-      itemName:this.taskName,itemDueDate:this.taskDueDate,itemStartTime:this.getStartTime(),itemDuration:this.getDuration()
-    });
-    this.dismiss();
-  }
 }
