@@ -67,6 +67,11 @@ const routes: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
+    path: 'news',
+    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule),
+    canActivate: [UserRouteAccessService]
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [UserRouteAccessService]

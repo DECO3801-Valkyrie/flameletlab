@@ -1,0 +1,36 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>NewsFeed</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [debounce]="1000"  (ionChange)="onSearch($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="loading" class="ion-margin-top ion-text-center">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <div *ngIf="newsFeed?.length === 0" class="ion-margin-top ion-text-center">
+    <h3 class="no-news-title">No news today</h3>
+    <ion-icon class="no-news-icon" name="sad-outline"></ion-icon>
+  </div>
+  <ng-container *ngIf="!loading">
+    <ion-card *ngFor="let news of newsFeed" (click)="checkoutArticle(news)">
+      <img alt="Article image" src="{{ news.urlToImage }}" />
+      <ion-card-header>
+        <ion-card-subtitle>Article Tags: {{ news.tags }}</ion-card-subtitle>
+        <ion-card-title>{{ news.title }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ng-container>
+
+
+</ion-content>
+
+<!--  <ion-infinite-scroll (ionInfinite)="loadMoreNews($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubble" loadingText="load news.."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>-->
