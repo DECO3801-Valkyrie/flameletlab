@@ -1,5 +1,5 @@
 import {Component, Type} from '@angular/core';
-import {AlertController, ModalController} from '@ionic/angular';
+import {AlertController, Config, ModalController} from '@ionic/angular';
 import {AddNewTasksPage} from '../add-new-tasks/add-new-tasks.page';
 import {PrincipalService} from '../../providers/core/auth/principal.service';
 import {WhiteNoiseService} from '../../providers/white-noise.service';
@@ -66,17 +66,21 @@ export class Tab2Page {
   fullName = '';
   whiteNoises: Array<any> = [];
   playingWhiteNoiseIndex = -1;
+  ios = false;
+
 
   constructor(public modalCtrl: ModalController,
               public principal: PrincipalService,
               public whiteNoiseService: WhiteNoiseService,
               public modal: NgbActiveModal,
+              public config: Config,
               private modalService: NgbModal,
               private flameletService: FlameletService,
               private alertController: AlertController,
               public todoService: TodoService) {
     principal.identity(true).then(account => {
       this.fullName = account.fullName.split(' ')[0];
+      this.ios = this.config.get('mode') === 'ios';
     });
   }
 
@@ -213,7 +217,7 @@ export class Tab2Page {
     this.todoService.deleteAll().subscribe({
       next: (resp) => {
       }
-    })
+    });
   }
 
 }
