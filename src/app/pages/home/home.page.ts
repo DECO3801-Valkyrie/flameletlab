@@ -6,6 +6,8 @@ import {WhiteNoiseService} from '../../providers/white-noise.service';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FlameletService} from '../../providers/flamelet.service';
 import {TodoService} from '../../providers/todo.service';
+import * as moment from 'moment/moment';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Component({
   selector: 'modal-flamelet',
@@ -47,11 +49,11 @@ const MODALS: {[name: string]: Type<any>} = {
 };
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss']
 })
-export class Tab2Page {
+export class HomePage {
   todoList = [];
   clearFlag = false;
   today: number = Date.now();
@@ -67,6 +69,7 @@ export class Tab2Page {
   whiteNoises: Array<any> = [];
   playingWhiteNoiseIndex = -1;
   ios = false;
+  lastConcernedDate;
 
 
   constructor(public modalCtrl: ModalController,
@@ -74,6 +77,7 @@ export class Tab2Page {
               public whiteNoiseService: WhiteNoiseService,
               public modal: NgbActiveModal,
               public config: Config,
+              private $localStorage: LocalStorageService,
               private modalService: NgbModal,
               private flameletService: FlameletService,
               private alertController: AlertController,
@@ -104,7 +108,10 @@ export class Tab2Page {
         if (resp.body.concerned) {
           this.flameletService.setFlameLetImage('CONCERNED');
           this.flameletService.setFlameLetMessage('You haven\'t done your tasks recently? it\'s okay to take a break');
-          this.open('focusFirst');
+          if (this.shouldShowConcernedModal()) {
+            this.open('focusFirst');
+            this.$localStorage.store('lastConcernedDate', new Date());
+          }
         }
       }
     });
@@ -218,6 +225,22 @@ export class Tab2Page {
       next: (resp) => {
       }
     });
+  }
+
+  getDurationHumanFriendly(duration: number) {
+    return moment.duration(duration, 'minutes').humanize();
+  }
+
+  getStartTimeFormatted(date: string) {
+    return moment(date).format('DD/MM/YYYY h:mm:ss a');
+  }
+
+  shouldShowConcernedModal() {
+    const lastDate: any = this.$localStorage.retrieve('lastConcernedDate');
+    if (lastDate != null) {
+      return ((new Date()).getTime()  - (new Date(lastDate)).getTime()) >= 86400*1000;
+    }
+   return true;
   }
 
 }

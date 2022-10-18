@@ -13,8 +13,8 @@ const routes: Routes = [
         loadChildren: () => import('../workplace-rater/workplace-rater.module').then(m => m.WorkplaceRaterPageModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'home',
+        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
       },
       {
         path: 'chat',
@@ -26,14 +26,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/tab2',
+        redirectTo: '/tabs/home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/dashboard/tab2',
+    redirectTo: '/dashboard/home',
     pathMatch: 'full'
   }
 ];

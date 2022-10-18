@@ -27,8 +27,8 @@ const routes: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
-    path: 'tab2',
-    loadChildren: () => import('./pages/tab2/tab2.module').then( m => m.Tab2PageModule),
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
     canActivate: [UserRouteAccessService]
   },
   {

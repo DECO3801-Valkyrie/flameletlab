@@ -14,6 +14,7 @@ export class AddNewTasksPage implements OnInit {
   taskStartTime;
   taskDurationHours;
   taskDurationMinutes;
+  numbersRegex = /\d/;
 
   addTaskObject;
   newTodo: ITodoRequest = { name: '', estimatedTime: '', estimatedStart: '' };
@@ -29,7 +30,7 @@ export class AddNewTasksPage implements OnInit {
    addTask() {
     this.newTodo.name = this.taskName;
     this.newTodo.estimatedStart = this.taskDueDate;
-    this.newTodo.estimatedTime = 'PT10S';
+    this.newTodo.estimatedTime = `PT${this.taskDurationHours}H${this.taskDurationMinutes}M`;
     this.todoService.createTodo(this.newTodo).subscribe(
       {
         next: (resp) => {

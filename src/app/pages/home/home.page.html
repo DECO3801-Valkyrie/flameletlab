@@ -77,8 +77,8 @@
           {{item.estimatedStart | date:'mediumDate'}}
         </ion-card-subtitle>
         <div class="time-duration-box">
-          <span class="time">Start: {{item.itemStartTime}}</span>
-          <span class="duration">Duration: {{item.itemDuration}}</span>
+          <span class="time">Start: {{ getStartTimeFormatted(item.estimatedStart) }}</span>
+          <span class="duration">Duration: {{ getDurationHumanFriendly(item.durationInMinutes)}}</span>
         </div>
       </ion-card-header>
     </ion-card>

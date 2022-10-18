@@ -6,30 +6,52 @@
 </ion-header>
 
 <ion-content>
+  <form #todoForm="ngForm" novalidate>
   <ion-card>
     <!-- Input with placeholder -->
     <ion-item>
       <div class="item-wrapper">
         <ion-label>Task Name</ion-label>
         <div>
-          <ion-textarea class="task-name" [(ngModel)]="taskName" placeholder="Task Name"></ion-textarea>
+          <ion-textarea class="task-name" name="task" #task="ngModel" [(ngModel)]="taskName" required  placeholder="Task Name"></ion-textarea>
+          <ion-text color="danger" class="ion-align">
+            <p [hidden]="task.valid" class="ion-padding-start">
+              Please enter a task name
+            </p>
+          </ion-text>
         </div>
       </div>
     </ion-item>
     <ion-item>
-      <ion-datetime class="datetime" [(ngModel)]="taskDueDate"></ion-datetime>
+      <ion-datetime name="datetime" required #datetime="ngModel" class="datetime" [(ngModel)]="taskDueDate"></ion-datetime>
     </ion-item>
+    <ion-text color="danger" class="ion-align">
+      <p [hidden]="datetime.valid" class="ion-padding-start">
+        Please select a date
+      </p>
+    </ion-text>
     <ion-item>
       <div class="item-wrapper">
         <ion-label>Duration</ion-label>
         <div class="duration-text">
-          <ion-textarea [(ngModel)]="taskDurationHours" placeholder="HH"></ion-textarea>
-          <ion-textarea [(ngModel)]="taskDurationMinutes" placeholder="MM"></ion-textarea>
+          <ion-textarea inputmode="numeric" minLength="1" maxlength="2" name="hours" #hours="ngModel" required [(ngModel)]="taskDurationHours" placeholder="HH"></ion-textarea>
+          <ion-textarea inputmode="numeric" minlength="1" maxlength="2" name="minutes" #minutes="ngModel" required [(ngModel)]="taskDurationMinutes" placeholder="MM"></ion-textarea>
         </div>
+        <ion-text color="danger" class="ion-align">
+          <p [hidden]="numbersRegex.test(taskDurationHours?.toString()) && numbersRegex.test(taskDurationMinutes?.toString())" class="ion-padding-start">
+            Hours and minutes must be numbers
+          </p>
+        </ion-text>
+        <ion-text color="danger" class="ion-align">
+          <p [hidden]="hours.valid && minutes.valid" class="ion-padding-start">
+            Please specify a duration 00:00 if none
+          </p>
+        </ion-text>
       </div>
     </ion-item>
   </ion-card>
 
   <!-- Add the task -->
-  <ion-button class="ion-margin" expand="block" (click)="addTask()">Add Task</ion-button>
+  <ion-button class="ion-margin" expand="block" [disabled]="todoForm.invalid || datetime.invalid || !(numbersRegex.test(taskDurationHours?.toString()) || numbersRegex.test(taskDurationMinutes?.toString()))" (click)="addTask()">Add Task</ion-button>
+  </form>
 </ion-content>
