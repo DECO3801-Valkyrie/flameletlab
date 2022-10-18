@@ -36,6 +36,7 @@ export class ChatPage  {
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
     public router: Router,
+    private alertController: AlertController,
     public routerOutlet: IonRouterOutlet,
     public toastCtrl: ToastController,
     public chatService: ChatService,
@@ -98,6 +99,34 @@ export class ChatPage  {
         this.router.navigateByUrl(`/chat-session/${groupId}`);
       }
     });
+  }
+
+  async onLeave(groupId, groupName) {
+    const alert = await this.alertController.create({
+      header: 'Leave Group?',
+      message: `Are you sure you wish to leave ${groupName}`,
+      buttons: [
+        {
+          text: 'No, Stay',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            // Do nothing
+          }
+        }, {
+          text: 'Yes, Leave',
+          handler: () => {
+            this.chatService.leave(groupId).subscribe({
+              next: (resp) => {
+                this.updateChatList();
+              }
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   onRefresh() {

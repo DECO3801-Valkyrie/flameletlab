@@ -18,6 +18,10 @@ export class ChatService {
     return this.http.post(SERVER_API_URL + `api/group-chat/${groupId}/join`, {}, {observe: 'response'});
   }
 
+  leave(groupId: number): Observable<HttpResponse<any>> {
+    return this.http.post(SERVER_API_URL + `api/group-chat/${groupId}/leave`, {}, {observe: 'response'});
+  }
+
   getGroupChats(options: any) {
     return this.http.get<IGroupChat[]>(SERVER_API_URL + 'api/group-chat/', { params: options, observe: 'response' });
   }
