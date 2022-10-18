@@ -36,7 +36,7 @@
     <ion-slides [options]="slideOpt">
       <ion-slide *ngFor="let whiteNoise of whiteNoises;index as i" >
         <ion-card class="white-noise-recommendation-card">
-          <img alt="white noise image" class="white-noise-images" src="/assets/images/{{whiteNoise.title}}.svg"/>
+          <img alt="white noise image" [ngClass]="{'white-noise-images': ios, 'white-noise-images-android': !ios}" [src]="'/assets/images/' + whiteNoise.title + '.svg'"/>
           <ion-row>
             <ion-col class="ion-align-items-start ion-no-margin ion-no-padding" size="8">
               <ion-card-header class="white-noise-header">

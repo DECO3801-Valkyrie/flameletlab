@@ -44,6 +44,16 @@ ion-avatar {
   z-index: -1;
 }
 
+.white-noise-images-android {
+  opacity: 50%;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  width: auto;
+  height: 100%;
+  z-index: 1;
+}
+
 .white-noise-player {
   background: transparent;
   color: black;

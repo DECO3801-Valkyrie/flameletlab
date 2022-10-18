@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('../chat/chat.module').then(m => m.ChatPageModule)
       },
       {
+        path: 'news',
+        loadChildren: () => import('../news/news.module').then(m => m.NewsPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab2',
         pathMatch: 'full'
